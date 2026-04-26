@@ -1,9 +1,24 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import Header from './components/Header.vue';
+import Header from './components/header/Header.vue';
+
+import { ref, onMounted } from 'vue'
+import { fetchRepositoryData } from './scripts/fetch_repository_data';
+import { formatTitle } from './scripts/utils';
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
+
+const latestRelease = ref<any>(null)
+const error = ref<string | null>(null)
+
+onMounted(async () => {
+  try {
+    latestRelease.value = await fetchRepositoryData('releases/latest')
+  } catch (e) {
+    error.value = String(e)
+  }
+})
 </script>
 
 <template>
-	<Header />
-  <!-- <HelloWorld /> -->
+	<Header :title="formatTitle(latestRelease?.name || 'DSL KeyPad', t)" />
 </template>

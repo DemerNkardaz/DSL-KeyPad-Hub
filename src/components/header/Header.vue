@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { fetchRepositoryData } from '../scripts/fetch_repository_data'
-
-const latestRelease = ref<any>(null)
-const error = ref<string | null>(null)
-
-onMounted(async () => {
-  try {
-    latestRelease.value = await fetchRepositoryData('releases/latest')
-  } catch (e) {
-    error.value = String(e)
-  }
-})
+defineProps<{
+	title: string
+}>()
 </script>
 
 <template>
   <header>
-    <h1>DSL KeyPad Hub</h1>
+		<div>
+			<a href="/">
+				<div>
+					<img src="/images/button_styled_icons/app.svg" alt="DSL KeyPad Logo">
+				</div>
+				<p>{{ title }}</p>
+			</a>
+		</div>
+		<div></div>
+		<div></div>
+    <!-- <h1>DSL KeyPad Hub</h1>
 
     <p>
       Welcome to the DSL KeyPad Hub! Here you can find the latest releases, tags, and commits for the DSL KeyPad project.
@@ -35,6 +35,6 @@ onMounted(async () => {
     </p>
 		<p>
 			{{ $t('welcome') }}
-		</p>
+		</p> -->
   </header>
 </template>
