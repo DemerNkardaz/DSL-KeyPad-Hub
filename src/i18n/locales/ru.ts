@@ -4,6 +4,5 @@ export default {
 		β: "Бета",
 		γ: "Гамма",
 	},
-  title: "DSL KeyPad Hub",
-  welcome: "Добро пожаловать"
+  title: "DSL KeyPad \\| Ввод множества символов Юникода прямо с клавиатуры",
 }

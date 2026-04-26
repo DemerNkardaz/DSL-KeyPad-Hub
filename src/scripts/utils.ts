@@ -1,4 +1,5 @@
 import type { ComposerTranslation } from 'vue-i18n'
+import { url_download_release_github } from './constants'
 
 export function formatTitle(source: string, t: ComposerTranslation): string {
 	const regex = /^(.*?)@([\d.]+)(?:\s*([^\s]+))?$/
@@ -15,4 +16,8 @@ export function formatTitle(source: string, t: ComposerTranslation): string {
 	}
 
 	return source
+}
+
+export function getDownloadUrl(version: string): string {
+	return url_download_release_github(version)
 }

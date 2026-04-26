@@ -4,6 +4,5 @@ export default {
 		β: "Beta",
 		γ: "Gamma",
 	},
-  title: "DSL KeyPad Hub",
-  welcome: "Welcome to the hub"
+  title: "DSL KeyPad \\| Type lots of Unicode characters via keyboard",
 }

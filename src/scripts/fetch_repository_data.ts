@@ -1,8 +1,7 @@
-import { repositorySources } from "./constants";
+import { url_api_github } from "./constants";
 
 export async function fetchRepositoryData<T = unknown>(endpoint: 'releases/latest' | 'releases' | 'tags' | 'commits'): Promise<T> {
-	const base = repositorySources['api_github']
-	const url = `${base}/${endpoint}`
+	const url = `${url_api_github}/${endpoint}`
 
 	try {
 		const response = await fetch(url)
