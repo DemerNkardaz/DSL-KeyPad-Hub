@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { fetchRepositoryData } from '../../scripts/fetch_repository_data'
+import { fetchRepositoryData } from '../scripts/fetch_repository_data'
 
 const latestRelease = ref<any>(null)
 const error = ref<string | null>(null)
@@ -33,5 +33,8 @@ onMounted(async () => {
     <p v-else>
       Loading...
     </p>
+		<p>
+			{{ $t('welcome') }}
+		</p>
   </header>
 </template>
