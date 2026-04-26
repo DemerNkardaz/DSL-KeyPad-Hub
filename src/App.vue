@@ -19,6 +19,12 @@ onMounted(async () => {
 })
 </script>
 
+<style lang="scss" scoped>
+</style>
+
 <template>
-	<Header :title="formatTitle(latestRelease?.name || 'DSL KeyPad', t)" />
+	<Header />
+	<div>
+		{{  formatTitle(latestRelease?.name || 'DSL KeyPad', t)  }}
+	</div>
 </template>
