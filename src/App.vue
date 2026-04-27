@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import Header from './components/header/Header.vue'
+import IntroSection from './components/sections/IntroSection.vue'
+import Main from './components/main/Main.vue'
 
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { getLatestRelease } from './scripts/fetch_repository_data'
 import { formatTitle } from './scripts/utils'
-import { useI18n } from 'vue-i18n'
 import { useDocumentMeta } from './scripts/composable'
+import { useI18n } from 'vue-i18n'
+
 const { t } = useI18n()
 
 const latestRelease = ref<any>(null)
@@ -20,6 +23,13 @@ onMounted(async () => {
 })
 
 useDocumentMeta()
+
+const formattedTitle = computed(() => {
+	if (latestRelease.value) {
+		return formatTitle(latestRelease.value.name || 'DSL KeyPad', t)
+	}
+	return 'DSL KeyPad'
+})
 </script>
 
 <style lang="scss" scoped>
@@ -27,7 +37,6 @@ useDocumentMeta()
 
 <template>
 	<Header :version="latestRelease?.tag_name ?? 'fetching...'" />
-	<div style="color: turquoise">
-		{{  formatTitle(latestRelease?.name || 'DSL KeyPad', t)  }}
-	</div>
+	<IntroSection :versionedTitle="formattedTitle" />
+	<Main></Main>
 </template>

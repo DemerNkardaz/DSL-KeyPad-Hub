@@ -4,7 +4,6 @@ import { pathWithBase } from '../../scripts/utils';
 defineProps<{
 	variant: 'download' | 'external' | 'action'
 	href?: string
-	action?: () => void
 	icon?: { src: string, alt: string }
 }>()
 
@@ -18,7 +17,7 @@ const emit = defineEmits<{
 </style>
 
 <template>
-	<a v-if="variant === 'download'" :href="href" class="btn" download target="_blank">
+	<a v-if="variant === 'download'" :href="href" class="btn" download>
 		<span v-if="icon" class="button-icon">
 			<img :src="pathWithBase(icon.src)" :alt="icon.alt" />
 		</span>
@@ -32,7 +31,7 @@ const emit = defineEmits<{
 		<span class="button-label"><slot /></span>
 	</a>
 
-	<button v-else type="button" class="btn" @click="action">
+	<button v-else type="button" class="btn" @click="emit('click')">
 		<span v-if="icon" class="button-icon">
 			<img :src="pathWithBase(icon.src)" :alt="icon.alt" />
 		</span>

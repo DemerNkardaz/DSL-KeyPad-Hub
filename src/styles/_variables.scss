@@ -1,5 +1,6 @@
 $surface-0: #333;
 $surface-1: #222;
+$surface-2: #444;
 
 $text-main: #eee;
 $text-secondary: #aaa;
@@ -8,3 +9,7 @@ $text-tertiary: #333;
 $accent-0: #ffd700;
 $accent-1: #ffe761;
 $accent-3: #aa6b39;
+
+$mask-wavy-0: radial-gradient(81.55px at 50% calc(100% - 64px), #000 99%, #0000 101%) calc(50% - 64px) 0/128px 100%,
+radial-gradient(81.55px at 50% calc(100% + 64px), #0000 99%, #000 101%) 50% calc(100% - 32px)/128px 100% repeat-x;
+

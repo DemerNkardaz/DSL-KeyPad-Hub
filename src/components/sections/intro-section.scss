@@ -1,0 +1,45 @@
+@use '@/styles/variables' as *;
+
+.intro-section {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	overflow: hidden;
+	width: 100%;
+	min-height: 400px;
+	height: calc(576px + 64px);
+	background-color: $surface-0;
+	border-bottom: 1px solid $surface-1;
+}
+
+.intro-section-background, .intro-section-content {
+	padding-inline: 15rem;
+}
+
+
+.intro-section-decorative-footer-container {
+	position: relative;
+  display: flex;
+  width: 100%;
+  height: 64px;
+	margin-block-start: auto;
+	background-color: $surface-1;
+
+	& > .intro-section-decorative-footer-wrapper {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		filter: drop-shadow(0px 1px 0px $surface-2) drop-shadow(0px -1px 0px $surface-2);
+
+		& > .intro-section-decorative-footer {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			background-color: $surface-0;
+			mask: $mask-wavy-0;
+		}
+	}
+}
