@@ -1,0 +1,50 @@
+@use '@/styles/variables' as *;
+
+.btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	gap: 0.25em;
+	padding-inline: 1em;
+	background-color: $accent-0;
+	border: 2px solid $accent-1;
+	color: $text-tertiary;
+	min-width: 150px;
+	height: 40px;
+	border-radius: 2.5px;
+	font-size: 1.15rem;
+	font-weight: bold;
+
+	cursor: pointer;
+	transition: all 150ms ease;
+
+	&:hover {
+		background-color: $accent-1;
+		border-color: $accent-0;
+	}
+
+	&:active {
+		background-color: $accent-0;
+		border-color: $accent-1;
+	}
+
+	& > .button-icon {
+		height: 22px;
+		width: 22px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		&>img {
+			height: 100%;
+			object-fit: contain;
+			display: block;
+		}
+	}
+
+	& > .button-label {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}

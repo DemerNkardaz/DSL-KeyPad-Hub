@@ -60,4 +60,11 @@
 
 .header-resources {
 	margin-left: auto;
+	display: flex;
+	gap: 1rem;
+}
+
+.header-buttons {
+	display: flex;
+	gap: 1rem;
 }

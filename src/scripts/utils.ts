@@ -21,3 +21,8 @@ export function formatTitle(source: string, t: ComposerTranslation): string {
 export function getDownloadUrl(version: string): string {
 	return url_download_release_github(version)
 }
+
+export function pathWithBase(path: string): string {
+	const base = import.meta.env.BASE_URL || '/'
+	return `${base.replace(/\/+$/, '')}/${path.replace(/^\/+/, '')}`
+}
