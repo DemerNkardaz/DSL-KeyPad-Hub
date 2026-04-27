@@ -9,6 +9,20 @@
 	border-bottom: 1px solid $surface-1;
 	padding-inline: 15rem;
 	align-items: center;
+
+	@media screen and (max-width: 1460px) {
+		padding-inline: calc(10rem + 2.5vw);
+	}
+	@media screen and (max-width: 1300px) {
+		padding-inline: calc(1rem + 2.5vw);
+	}
+	@media screen and (max-width: 900px) {
+		padding-inline: 1rem;
+
+		&>.content-header-links {
+			margin-inline: 2rem;
+		}
+	}
 }
 
 .header-logo {
@@ -54,17 +68,38 @@
 }
 
 .header-logo-title {
+	width: 160px;
 	font-size: 1.75rem;
 	font-weight: bold;
 }
 
-.header-resources {
-	margin-left: auto;
+.header-resources-container {
 	display: flex;
-	gap: 1rem;
+	gap: 2rem;
+	margin-inline: auto 0.25rem;
+
+	& > .header-resource {
+		color: inherit;
+		display: inline-flex;
+		position: relative;
+		justify-content: center;
+		align-items: center;
+		gap: 0.6rem;
+		width: auto;
+		height: 48px;
+		text-decoration: none;
+
+		& > img {
+			height: 1.75rem;
+			min-width: 1.75rem;
+			object-fit: contain;
+			display: block;
+		}
+	}
 }
 
 .header-buttons {
 	display: flex;
 	gap: 1rem;
+	margin-inline-start: 2.25rem;
 }

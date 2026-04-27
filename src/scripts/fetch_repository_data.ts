@@ -1,10 +1,10 @@
-import { url_api_github } from "./constants";
+import { urlApiGithub } from "./constants";
 
 const CACHE_KEY = 'latestRelease'
 const CACHE_TTL = 1000 * 60 * 30 // 30 минут
 
 export async function fetchRepositoryData<T = unknown>(endpoint: 'releases/latest' | 'releases' | 'tags' | 'commits'): Promise<T> {
-	const url = `${url_api_github}/${endpoint}`
+	const url = `${urlApiGithub}/${endpoint}`
 
 	try {
 		const response = await fetch(url)
