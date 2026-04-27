@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
 import Copyright from './Copyright.vue'
 
-const { t } = useI18n()
 const currentYear = new Date().getFullYear()
-
 </script>
 
 <style lang="scss">
