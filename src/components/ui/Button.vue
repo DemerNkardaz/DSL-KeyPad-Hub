@@ -12,29 +12,29 @@ const emit = defineEmits<{
 }>()
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use './button.scss';
 </style>
 
 <template>
 	<a v-if="variant === 'download'" :href="href" class="btn" download>
-		<span v-if="icon" class="button-icon">
+		<span v-if="icon" class="btn__icon">
 			<img :src="pathWithBase(icon.src)" :alt="icon.alt" />
 		</span>
-		<span class="button-label"><slot /></span>
+		<span class="btn__label"><slot /></span>
 	</a>
 
 	<a v-else-if="variant === 'external'" :href="href" class="btn" target="_blank" rel="noopener noreferrer">
-		<span v-if="icon" class="button-icon">
+		<span v-if="icon" class="btn__icon">
 			<img :src="pathWithBase(icon.src)" :alt="icon.alt" />
 		</span>
-		<span class="button-label"><slot /></span>
+		<span class="btn__label"><slot /></span>
 	</a>
 
 	<button v-else type="button" class="btn" @click="emit('click')">
-		<span v-if="icon" class="button-icon">
+		<span v-if="icon" class="btn__icon">
 			<img :src="pathWithBase(icon.src)" :alt="icon.alt" />
 		</span>
-		<span class="button-label"><slot /></span>
+		<span class="btn__label"><slot /></span>
 	</button>
 </template>

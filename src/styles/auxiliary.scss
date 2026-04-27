@@ -1,0 +1,104 @@
+.text-bold {
+	font-weight: 700;
+}
+
+.text-italic {
+	font-style: italic;
+}
+
+.text-underline {
+	text-decoration: underline;
+}
+
+.text-underline-dot {
+	text-decoration: underline dotted;
+}
+
+.text-strike {
+	text-decoration: line-through;
+}
+
+.text-uppercase {
+	text-transform: uppercase;
+}
+
+.text-lowercase {
+	text-transform: lowercase;
+}
+
+.text-capitalize {
+	text-transform: capitalize;
+}
+
+.text-accented {
+	color: var(--accent-color);
+}
+
+.text-invisible {
+	color: transparent !important;
+
+	& * {
+		color: transparent !important;
+	}
+}
+
+.hidden-on-tablet {
+	@media screen and (max-width: 800px) {
+		display: none !important;
+	}
+}
+
+.hidden-on-mobile {
+	@media screen and (max-width: 600px) {
+		display: none !important;
+	}
+}
+
+.text-small {
+	font-size: 0.75rem;
+}
+
+.title-small {
+	font-size: 1rem;
+
+	@media screen and (max-width: 1024px) {
+		font-size: min(0.75rem, calc(0.15rem + 2.5vw));
+		;
+	}
+}
+
+.italic {
+	font-style: italic;
+}
+
+.underline {
+	text-decoration: underline;
+}
+
+.underline-dot {
+	text-decoration: underline dotted;
+}
+
+.question {
+	cursor: help;
+}
+
+.flex-container {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+
+.circled-symbol {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	border-radius: 50%;
+	background-color: var(--background-info);
+	color: var(--text-light);
+	min-width: 1.15em;
+	min-height: 1.15em;
+	box-sizing: border-box;
+}

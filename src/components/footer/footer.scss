@@ -1,0 +1,11 @@
+@use '@/styles/variables' as *;
+
+.content-footer {
+	font-family: 'Noo Sans', sans-serif;
+  width: 100%;
+  padding: 1rem;
+  background-color: $surface-0;
+  border-top: 1px solid $surface-2;
+  padding-inline: 2em;
+  color: $text-quaternary;
+}

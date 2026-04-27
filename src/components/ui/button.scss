@@ -29,7 +29,7 @@
 		border-color: $accent-1;
 	}
 
-	& > .button-icon {
+	& > .btn__icon {
 		height: 22px;
 		width: 22px;
 		&>img {
@@ -39,7 +39,7 @@
 		}
 	}
 
-	& > .button-label {
+	& > .btn__label {
 		display: flex;
 		justify-content: center;
 		align-items: center;

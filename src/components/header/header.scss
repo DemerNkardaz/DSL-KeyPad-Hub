@@ -25,7 +25,7 @@
 	}
 }
 
-.header-logo {
+.content-header__logo {
 	display: flex;
 	align-items: center;
 	width: fit-content;
@@ -43,7 +43,7 @@
 	}
 }
 
-.header-logo-icon {
+.content-header__logo-icon {
 	width: 54px;
 	height: 54px;
 	flex: 0 0 auto;
@@ -67,18 +67,18 @@
 	}
 }
 
-.header-logo-title {
+.content-header__logo-title {
 	width: 160px;
 	font-size: 1.75rem;
 	font-weight: bold;
 }
 
-.header-resources-container {
+.content-header__resources-container {
 	display: flex;
 	gap: 2rem;
 	margin-inline: auto 0.25rem;
 
-	& > .header-resource {
+	& > .content-header__resource {
 		color: inherit;
 		display: inline-flex;
 		position: relative;
@@ -98,7 +98,7 @@
 	}
 }
 
-.header-buttons {
+.content-header__buttons {
 	display: flex;
 	gap: 1rem;
 	margin-inline-start: 2.25rem;

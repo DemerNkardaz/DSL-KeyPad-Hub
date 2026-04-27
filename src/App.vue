@@ -2,6 +2,7 @@
 import Header from './components/header/Header.vue'
 import IntroSection from './components/sections/IntroSection.vue'
 import Main from './components/main/Main.vue'
+import Footer from './components/footer/Footer.vue'
 
 import { ref, onMounted, computed } from 'vue'
 import { getLatestRelease } from './scripts/fetch_repository_data'
@@ -39,4 +40,5 @@ const formattedTitle = computed(() => {
 	<Header :version="latestRelease?.tag_name ?? 'fetching...'" />
 	<IntroSection :versionedTitle="formattedTitle" />
 	<Main></Main>
+	<Footer />
 </template>

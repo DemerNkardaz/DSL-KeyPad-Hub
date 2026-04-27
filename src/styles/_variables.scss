@@ -1,15 +1,31 @@
 $surface-0: #333;
 $surface-1: #222;
 $surface-2: #444;
+$surface-3: #777;
+
+$surface-b-0: #e0e0e0;
+
+
+$shadow-a-0: #333;
+$shadow-a-1: #222;
+$shadow-a-2: #444;
+
+$shadow-b-0: #eee;
 
 $text-main: #eee;
 $text-secondary: #aaa;
 $text-tertiary: #333;
+$text-quaternary: #777;
 
 $accent-0: #ffd700;
 $accent-1: #ffe761;
 $accent-3: #aa6b39;
+$accent-b-0: #4fb574;
+$accent-b-1: #64dc90;
+$accent-b-3: #31834f;
 
 $mask-wavy-0: radial-gradient(81.55px at 50% calc(100% - 64px), #000 99%, #0000 101%) calc(50% - 64px) 0/128px 100%,
 radial-gradient(81.55px at 50% calc(100% + 64px), #0000 99%, #000 101%) 50% calc(100% - 32px)/128px 100% repeat-x;
 
+$fonts-serif: 'Noto Serif', 'Noto Sans Symbols', 'Noto Sans Symbols 2', 'Noto Sans Samaritan', serif;
+$fonts-game: 'Noto Sans', 'Noto Sans Symbols', 'Noto Sans Symbols 2', sans-serif;
