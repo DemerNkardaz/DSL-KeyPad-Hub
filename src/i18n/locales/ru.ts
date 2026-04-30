@@ -9,7 +9,7 @@ export default {
 	},
 	title: "DSL KeyPad \\| Ввод множества символов Юникода прямо с клавиатуры",
 	description: {
-		unicode: 'Тысячи символов Юникода: {latin}, {cyrillic}, {runes}, {glagolitic}, {math}, {alchemy} и многое {other} станет намного доступнее с помощью DSL KeyPad.',
+		unicode: 'Тысячи символов Юникода: {latin}, {cyrillic}, {runes}, {glagolitic}, {math}, {alchemy} и\u00A0многое {other} станет намного доступнее с\u00A0помощью DSL\u00A0KeyPad.',
 		requirement: '*Требует установки {link}{download}.',
 	},
 	labels: {
@@ -22,6 +22,6 @@ export default {
 		other: 'другое',
 		download: 'скачать',
 	},
-	features: "Windows \\| Открытое и свободное ПО \\| Кастомизируемое \\| Лицензия MIT",
+	features: "Windows \\| Открытое и\u00A0свободное\u00A0ПО \\| Кастомизируемое \\| Лицензия\u00A0MIT",
 	download: "Скачать",
 }

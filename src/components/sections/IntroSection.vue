@@ -8,6 +8,12 @@ import Description from './Description.vue';
 
 type AppLocale = keyof Omit<typeof randomCharacters[keyof typeof randomCharacters], 'item'>
 
+type TextPart = { type: 'text', value: string }
+type SpanPart = { type: 'span', text: string, title: string }
+type LinkPart = { type: 'link', text: string, url: string }
+type SupPart = { type: 'sup', text: string }
+type Part = TextPart | SpanPart | LinkPart | SupPart
+
 const currentLocale = ref<AppLocale>(locale.value as AppLocale);
 const scatterEl = ref<HTMLElement | null>(null);
 
@@ -18,12 +24,6 @@ const randomCharacterLocales = randomCharacterEntry[currentLocale.value];
 const randomCharacterStyle = ('style' in randomCharacterEntry ? randomCharacterEntry.style : '') || null;
 
 let intervalId: number | undefined;
-
-type TextPart = { type: 'text', value: string }
-type SpanPart = { type: 'span', text: string, title: string }
-type LinkPart = { type: 'link', text: string, url: string }
-type SupPart = { type: 'sup', text: string }
-type Part = TextPart | SpanPart | LinkPart | SupPart
 
 function parseString(raw: string): Part[] {
     const parts: Part[] = []

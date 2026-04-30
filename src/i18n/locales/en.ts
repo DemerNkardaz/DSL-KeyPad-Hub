@@ -9,7 +9,7 @@ export default {
 	},
 	title: "DSL KeyPad \\| Type lots of Unicode characters via keyboard",
 	description: {
-		unicode: 'Thousands of Unicode symbols: {latin}, {cyrillic}, {runes}, {glagolitic}, {math}, {alchemy} and much {other} become easily accessible with DSL KeyPad.',
+		unicode: 'Thousands of Unicode symbols: {latin}, {cyrillic}, {runes}, {glagolitic}, {math}, {alchemy} and much {other} become easily accessible with DSL\u00A0KeyPad.',
 		requirement: '*Requires {link} installation{download}.',
 	},
 	labels: {
@@ -22,6 +22,6 @@ export default {
 		other: 'more',
 		download: 'download',
 	},
-	features: "Windows \\| Free & Open Source \\| Customizable \\| MIT License",
+	features: "Windows \\| Free & Open Source \\| Customizable \\| MIT\u00A0License",
 	download: "Download",
 }
