@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { backgroundRandomCharacters } from '../../data/random_character';
 import Description from './Description.vue';
 
@@ -133,6 +134,60 @@ function scatterBackgroundCharacters(characters: string[] | string = backgroundR
 	return html;
 }
 
+const scatterEl = ref<HTMLElement | null>(null);
+
+function animateScatterCollapse(element: HTMLElement, duration = 20000): void {
+	const collapseAnim = element.animate([
+		{ width: '100%' },
+		{ width: '0%' }
+	], {
+		duration: duration,
+		easing: 'cubic-bezier(0.4, 0, 1, 1)',
+		fill: 'forwards'
+	});
+
+	collapseAnim.onfinish = () => {
+		const spans = element.querySelectorAll('span');
+		spans.forEach(span => {
+			const currentLeft = parseFloat(span.style.left);
+			span.style.left = `${100 - currentLeft}%`;
+		});
+
+		element.animate([
+			{ width: '0%' },
+			{ width: '100%' }
+		], {
+			duration: duration,
+			easing: 'cubic-bezier(0, 0, 0.6, 1)',
+			fill: 'forwards'
+		});
+	};
+}
+
+let intervalId: number | undefined;
+
+onMounted(() => {
+	if (!scatterEl.value) return;
+
+	const startDelay = 20000;
+
+	setTimeout(() => {
+		if (!scatterEl.value) return;
+
+		animateScatterCollapse(scatterEl.value, 20000);
+
+		intervalId = setInterval(() => {
+			if (scatterEl.value) {
+				animateScatterCollapse(scatterEl.value, 20000);
+			}
+		}, 40000);
+	}, startDelay);
+});
+
+onBeforeUnmount(() => {
+	if (intervalId) clearInterval(intervalId);
+});
+
 defineProps<{
 	versionedTitle: string
 }>()
@@ -145,7 +200,7 @@ defineProps<{
 <template>
 	<section class="intro-section">
 		<div class="intro-section__background">
-			<div class="intro-section__background__characters" v-html="scatterBackgroundCharacters()"></div>
+			<div class="intro-section__background__characters" ref="scatterEl" v-html="scatterBackgroundCharacters()"></div>
 			<div class="intro-section__background__gradient"></div>
 		</div>
 		<div class="intro-section__content">

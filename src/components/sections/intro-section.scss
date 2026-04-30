@@ -29,6 +29,23 @@
 		color: color-mix(in srgb, $shadow-b-0, $shadow-a-0 80%);
 		z-index: -1;
 
+		&__characters {
+			position: absolute;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			height: 100%;
+			font-family: var(--fonts-serif);
+			color: color-mix(in srgb, var(--text-light), var(--text-dark) 80%);
+
+			& .chess-container, & .xiangqi-container {
+					position: absolute;
+					top: 0.25rem;
+					right: 27rem;
+			}
+		}
+
 		&__gradient {
 			position: absolute;
 			width: 100%;
