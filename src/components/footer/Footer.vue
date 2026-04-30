@@ -4,9 +4,7 @@ import Copyright from './Copyright.vue'
 const currentYear = new Date().getFullYear()
 </script>
 
-<style lang="scss">
-@use './footer.scss';
-</style>
+<style lang="scss" src="./footer.scss" />
 
 <template>
 	<footer class="content-footer">

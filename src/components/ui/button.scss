@@ -15,6 +15,7 @@
 	border-radius: 2.5px;
 	font-size: 1.15rem;
 	font-weight: bold;
+	text-decoration: none;
 
 	cursor: pointer;
 	transition: all 150ms ease;
@@ -22,11 +23,15 @@
 	&:hover {
 		background-color: $accent-1;
 		border-color: $accent-0;
+		color: $text-tertiary;
+		text-decoration: inherit;
 	}
 
 	&:active {
 		background-color: $accent-0;
 		border-color: $accent-1;
+		color: $text-tertiary;
+		text-decoration: inherit;
 	}
 
 	& > .btn__icon {

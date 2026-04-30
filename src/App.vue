@@ -9,8 +9,10 @@ import { getLatestRelease } from './scripts/fetch_repository_data'
 import { formatTitle } from './scripts/utils'
 import { useDocumentMeta } from './scripts/composable'
 import { useI18n } from 'vue-i18n'
+import { useWindowSize } from './scripts/useWindowSize'
 
 const { t } = useI18n()
+const { windowWidth } = useWindowSize()
 
 const latestRelease = ref<any>(null)
 const error = ref<string | null>(null)
@@ -26,10 +28,10 @@ onMounted(async () => {
 useDocumentMeta()
 
 const formattedTitle = computed(() => {
-	if (latestRelease.value) {
-		return formatTitle(latestRelease.value.name || 'DSL KeyPad', t)
-	}
-	return 'DSL KeyPad'
+  if (latestRelease.value) {
+    return formatTitle(windowWidth.value > 450 && latestRelease.value.name || 'DSL KeyPad', t)
+  }
+  return 'DSL KeyPad'
 })
 </script>
 
@@ -37,8 +39,8 @@ const formattedTitle = computed(() => {
 </style>
 
 <template>
-	<Header :version="latestRelease?.tag_name ?? 'fetching...'" />
-	<IntroSection :versionedTitle="formattedTitle" />
+	<Header :version="latestRelease?.tag_name ?? 'fetching...'" :window-width="windowWidth" />
+	<IntroSection :versioned-title="formattedTitle" />
 	<Main></Main>
 	<Footer />
 </template>

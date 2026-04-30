@@ -3,6 +3,10 @@ import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { backgroundRandomCharacters } from '../../data/random_character';
 import Description from './Description.vue';
 
+const scatterEl = ref<HTMLElement | null>(null);
+
+let intervalId: number | undefined;
+
 function scatterBackgroundCharacters(characters: string[] | string = backgroundRandomCharacters): string {
 	if (Array.isArray(characters)) {
 		const randomIndex = Math.floor(Math.random() * characters.length);
@@ -134,8 +138,6 @@ function scatterBackgroundCharacters(characters: string[] | string = backgroundR
 	return html;
 }
 
-const scatterEl = ref<HTMLElement | null>(null);
-
 function animateScatterCollapse(element: HTMLElement, duration = 20000): void {
 	const collapseAnim = element.animate([
 		{ width: '100%' },
@@ -164,9 +166,7 @@ function animateScatterCollapse(element: HTMLElement, duration = 20000): void {
 	};
 }
 
-let intervalId: number | undefined;
-
-onMounted(() => {
+function initScatterCollapse(): void {
 	if (!scatterEl.value) return;
 
 	const startDelay = 20000;
@@ -182,6 +182,10 @@ onMounted(() => {
 			}
 		}, 40000);
 	}, startDelay);
+}
+
+onMounted(() => {
+	initScatterCollapse();
 });
 
 onBeforeUnmount(() => {
@@ -193,9 +197,7 @@ defineProps<{
 }>()
 </script>
 
-<style lang="scss">
-@use './intro-section.scss';
-</style>
+<style lang="scss" src="./intro-section.scss" />
 
 <template>
 	<section class="intro-section">
@@ -204,7 +206,10 @@ defineProps<{
 			<div class="intro-section__background__gradient"></div>
 		</div>
 		<div class="intro-section__content">
-			<div class="intro-section__content__random-character"></div>
+			<div class="intro-section__content__random-character">
+				<p class="intro-section__content__random-character__symbol">&#x2BE1;</p>
+				<p class="intro-section__content__random-character__subtitle">Аид<br>[ <a href="https://ru.wikipedia.org/wiki/Ураническая_астрология" target="_blank" rel="noopener noreferrer">Ураническая астрология</a> ]</p>
+			</div>
 			<h1 class="intro-section__content__header">
 				{{ versionedTitle }}
 			</h1>

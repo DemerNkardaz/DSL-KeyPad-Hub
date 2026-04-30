@@ -12,9 +12,7 @@ const emit = defineEmits<{
 }>()
 </script>
 
-<style lang="scss">
-@use './button.scss';
-</style>
+<style lang="scss" src="./button.scss" />
 
 <template>
 	<a v-if="variant === 'download'" :href="href" class="btn" download>

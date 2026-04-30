@@ -3,9 +3,7 @@ import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 </script>
 
-<style lang="scss">
-@use './main.scss';
-</style>
+<style lang="scss" src="./main.scss" />
 
 <template>
 	<main class="content-main">

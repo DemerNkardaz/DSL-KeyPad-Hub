@@ -36,8 +36,8 @@
 			align-items: center;
 			width: 100%;
 			height: 100%;
-			font-family: var(--fonts-serif);
-			color: color-mix(in srgb, var(--text-light), var(--text-dark) 80%);
+			font-family: $fonts-serif;
+			color: color-mix(in srgb, $shadow-b-0, $shadow-a-0 80%);
 
 			& .chess-container, & .xiangqi-container {
 					position: absolute;
@@ -58,6 +58,27 @@
 		margin-block-start: auto;
 		width: 60rem;
 
+		&__random-character {
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-end;
+
+				margin-block-end: 5.75rem;
+
+			&__symbol {
+				font-family: $fonts-serif;
+				font-size: 8rem;
+				line-height: 1.1em;
+				margin: 0
+			}
+
+			&__subtitle {
+				font-size: 1.45rem;
+				font-weight: 400;
+				margin: 0
+			}
+		}
+
 		&__header {
 			display: flex;
 			width: 100%;
@@ -75,6 +96,32 @@
 			font-size: 1.45rem;
 			font-weight: 400;
 			margin-block-start: 0.75rem;
+		}
+
+		@media screen and (max-width: 1100px) {
+			width: 90dvw;
+		}
+
+		@media screen and (max-width: 750px) {
+			&__header {
+				font-size: clamp(2rem, 1.2rem + 2vw, 2.5rem);
+			}
+
+			&__description {
+				font-size: clamp(1rem, 0.9rem + 0.8vw, 1.25rem);
+			}
+
+			&__random-character {
+				margin-block-end: clamp(2rem, 1.2rem + 2vw, 3.75rem);
+
+				&__symbol {
+					font-size: clamp(4rem, 2rem + 5vw, 6rem);
+				}
+
+				&__subtitle {
+					font-size: clamp(1rem, 0.9rem + 0.5vw, 1.15rem);
+				}
+			}
 		}
 	}
 
