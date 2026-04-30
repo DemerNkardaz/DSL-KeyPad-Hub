@@ -1,14 +1,15 @@
 type LocaleData = {
   title: string
 	subtitle: string
-	game?: string
-	background?: string
 }
 
 type RandomCharacter = {
-  item: string
+	item: string
   en: LocaleData
-  ru: LocaleData
+	ru: LocaleData
+	style?: string
+	game?: string
+	background?: string
 }
 
 type RandomCharacters = Record<string, RandomCharacter>
@@ -103,7 +104,7 @@ export const randomCharacters = {
 		},
 		ru: {
 			title: "Тетраграмма {Шан|上 [shàng]} (Восхождение)",
-			subtitle: "[Восемьдесят одна тетраграмма@https://zh.wikipedia.org/zh-cn/太玄]"
+			subtitle: "[Восемьдесят одна тетраграмма@https://zh.wikipedia.org/zh-cn/太玄]^(кит.)^"
 		}
 	},
 	tetragram_le: {
@@ -114,7 +115,7 @@ export const randomCharacters = {
 		},
 		ru: {
 			title: "Тетраграмма {Лэ|乐 [lè]} (Радость)",
-			subtitle: "[Восемьдесят одна тетраграмма@https://zh.wikipedia.org/zh-cn/太玄]"
+			subtitle: "[Восемьдесят одна тетраграмма@https://zh.wikipedia.org/zh-cn/太玄]^(кит.)^"
 		}
 	},
 	copper_venus: {
@@ -186,44 +187,44 @@ export const randomCharacters = {
 	ankh: {
 		item: "\u2625",
 		en: {
-			title: "Ankh",
+			title: "[Ankh@https://en.wikipedia.org/wiki/Ankh]",
 			subtitle: "[Ancient Egypt@https://en.wikipedia.org/wiki/Ancient_Egypt]"
 		},
 		ru: {
-			title: "Анх",
+			title: "[Анх@https://ru.wikipedia.org/wiki/Анх]",
 			subtitle: "[Древний Египет@https://ru.wikipedia.org/wiki/Древний_Египет]"
 		}
 	},
 	caduceus: {
 		item: "\u269A\u2624",
 		en: {
-			title: "Caduceus",
+			title: "[Caduceus@https://en.wikipedia.org/wiki/Caduceus]",
 			subtitle: "[Ancient Greece@https://en.wikipedia.org/wiki/Ancient_Greece], [Ancient Rome@https://en.wikipedia.org/wiki/Ancient_Rome]"
 		},
 		ru: {
-			title: "Кадуцей",
+			title: "[Кадуцей@https://ru.wikipedia.org/wiki/Кадуцей]",
 			subtitle: "[Древняя Греция@https://ru.wikipedia.org/wiki/Древняя_Греция], [Древний Рим@https://ru.wikipedia.org/wiki/Древний_Рим]"
 		}
 	},
 	korean_won: {
 		item: "\u20A9",
 		en: {
-			title: "South Korean Won",
+			title: "[South Korean Won@https://en.wikipedia.org/wiki/South_Korean_won]",
 			subtitle: "[South Korea@https://en.wikipedia.org/wiki/South_Korea]"
 		},
 		ru: {
-			title: "Корейский вона",
+			title: "[Корейская вона@https://ru.wikipedia.org/wiki/Южнокорейская_вона]",
 			subtitle: "[Республика Корея@https://ru.wikipedia.org/wiki/Республика_Корея]"
 		}
 	},
 	japanese_yen: {
 		item: "\u00A5",
 		en: {
-			title: "Japanese Yen / Chinese Yuan",
+			title: "[Japanese Yen@https://en.wikipedia.org/wiki/Japanese_yen] / [Chinese Yuan@https://en.wikipedia.org/wiki/Renminbi]",
 			subtitle: "[Japan@https://en.wikipedia.org/wiki/Japan], [China@https://en.wikipedia.org/wiki/China]"
 		},
 		ru: {
-			title: "Японская иена / Китайский юань",
+			title: "[Японская иена@https://ru.wikipedia.org/wiki/Иена] / [Китайский юань@https://ru.wikipedia.org/wiki/Китайский_юань]",
 			subtitle: "[Япония@https://ru.wikipedia.org/wiki/Япония], [Китай@https://ru.wikipedia.org/wiki/Китайская_Народная_Республика]"
 		}
 	},
@@ -240,6 +241,7 @@ export const randomCharacters = {
 	},
 	abkhazian_tswe: {
 		item: "\uA68E",
+		style: "margin-block-end: 2rem;",
 		en: {
 			title: "Tswe",
 			subtitle: "[Uslar Cyrillic (Abkhazia)@https://en.wikipedia.org/wiki/Abkhaz_alphabet]"
@@ -251,6 +253,7 @@ export const randomCharacters = {
 	},
 	romanian_yn: {
 		item: "\uA65E",
+		style: "margin-block-end: 2rem;",
 		en: {
 			title: "Yn",
 			subtitle: "[Romanian Cyrillic@https://en.wikipedia.org/wiki/Romanian_Cyrillic_alphabet]"

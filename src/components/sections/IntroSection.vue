@@ -12,32 +12,44 @@ const currentLocale = ref<AppLocale>(locale.value as AppLocale);
 const scatterEl = ref<HTMLElement | null>(null);
 
 const randomCharacterEntryID = randomObjectKey(randomCharacters);
-const randomCharacterItem = randomCharacters[randomCharacterEntryID].item;
-const randomCharacterLocales = randomCharacters[randomCharacterEntryID][currentLocale.value];
+const randomCharacterEntry = randomCharacters[randomCharacterEntryID];
+const randomCharacterItem = randomCharacterEntry.item;
+const randomCharacterLocales = randomCharacterEntry[currentLocale.value];
+const randomCharacterStyle = ('style' in randomCharacterEntry ? randomCharacterEntry.style : '') || null;
 
 let intervalId: number | undefined;
 
-const titleParts = computed(() => {
-		const parts = []
-		let lastIndex = 0
-		const re = /\{([^|]+)\|([^}]+)\}/g
-		for (const match of randomCharacterLocales.title.matchAll(re)) {
-				if (match.index > lastIndex) {
-						parts.push({ type: 'text', value: randomCharacterLocales.title.slice(lastIndex, match.index) })
-				}
-				parts.push({ type: 'span', text: match[1], title: match[2] })
-				lastIndex = match.index + match[0].length
-		}
-		if (lastIndex < randomCharacterLocales.title.length) {
-				parts.push({ type: 'text', value: randomCharacterLocales.title.slice(lastIndex) })
-		}
-		return parts
-})
+type TextPart = { type: 'text', value: string }
+type SpanPart = { type: 'span', text: string, title: string }
+type LinkPart = { type: 'link', text: string, url: string }
+type SupPart = { type: 'sup', text: string }
+type Part = TextPart | SpanPart | LinkPart | SupPart
 
-const subtitleLinks = computed(() => {
-    const matches = [...randomCharacterLocales.subtitle.matchAll(/\[([^\]@]+)@([^\]]+)\]/g)]
-    return matches.map(m => ({ text: m[1], url: m[2] }))
-})
+function parseString(raw: string): Part[] {
+    const parts: Part[] = []
+    let lastIndex = 0
+    const re = /\{([^|]+)\|([^}]+)\}|\[([^\]@]+)@([^\]]+)\]|\^([^^]+)\^/g
+    for (const match of raw.matchAll(re)) {
+        if (match.index > lastIndex) {
+            parts.push({ type: 'text', value: raw.slice(lastIndex, match.index) })
+        }
+        if (match[1]) {
+            parts.push({ type: 'span', text: match[1], title: match[2] })
+        } else if (match[3]) {
+            parts.push({ type: 'link', text: match[3], url: match[4] })
+        } else {
+            parts.push({ type: 'sup', text: match[5] })
+        }
+        lastIndex = match.index + match[0].length
+    }
+    if (lastIndex < raw.length) {
+        parts.push({ type: 'text', value: raw.slice(lastIndex) })
+    }
+    return parts
+}
+
+const titleParts = computed(() => parseString(randomCharacterLocales.title))
+const subtitleParts = computed(() => parseString(randomCharacterLocales.subtitle))
 
 function scatterBackgroundCharacters(characters: string[] | string = backgroundRandomCharacters): string {
 	if (Array.isArray(characters)) {
@@ -239,29 +251,29 @@ defineProps<{
 		</div>
 		<div class="intro-section__content">
 			<div class="intro-section__content__random-character">
-				<p class="intro-section__content__random-character__symbol">{{ randomCharacterItem }}</p>
-				<p class="intro-section__content__random-character__subtitle">
-					<span>
-						<template v-for="part of titleParts">
-							<span v-if="part.type === 'span'" class="underline-dot question" :title="part.title">{{ part.text }}</span>
-							<template v-else>{{ part.value }}</template>
-						</template>
-					</span>
-					<br>
-					<span v-if="subtitleLinks.length">
-						[
-						<template v-for="(link, i) of subtitleLinks">
-							<template v-if="i > 0">, </template>
-							<a :href="link.url" target="_blank" rel="noopener noreferrer">{{ link.text }}</a>
-						</template>
-						]
-					</span>
-					<span v-else>
-						[
-						{{ randomCharacterLocales.subtitle }}
-						]
-					</span>
-				</p>
+				<p class="intro-section__content__random-character__symbol" :style="randomCharacterStyle">{{ randomCharacterItem }}</p>
+					<p class="intro-section__content__random-character__caption">
+						<span>
+							<template v-for="part of titleParts">
+								<span v-if="part.type === 'span'" class="underline-dot question" :title="part.title">{{ part.text }}</span>
+								<a v-else-if="part.type === 'link'" :href="part.url" target="_blank" rel="noopener noreferrer">{{ part.text }}</a>
+								<sup v-else-if="part.type === 'sup'">{{ part.text }}</sup>
+								<template v-else-if="part.type === 'text'">{{ part.value }}</template>
+							</template>
+						</span>
+						<br>
+						<span>
+							[
+							<template v-for="part of subtitleParts">
+								<template v-if="part.type === 'link'">
+										<a :href="part.url" target="_blank" rel="noopener noreferrer">{{ part.text }}</a>
+								</template>
+								<sup v-else-if="part.type === 'sup'">{{ part.text }}</sup>
+								<template v-else-if="part.type === 'text'">{{ part.value }}</template>
+							</template>
+							]
+						</span>
+					</p>
 			</div>
 			<h1 class="intro-section__content__header">
 				{{ versionedTitle }}
