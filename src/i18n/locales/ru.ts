@@ -10,7 +10,7 @@ export default {
 	title: "DSL KeyPad \\| Ввод множества символов Юникода прямо с клавиатуры",
 	description: {
 		unicode: 'Тысячи символов Юникода: {latin}, {cyrillic}, {runes}, {glagolitic}, {math}, {alchemy} и многое {other} станет намного доступнее с помощью DSL KeyPad.',
-		requirement: '*Требует установки {link} (\u200A{download}\u200A).',
+		requirement: '*Требует установки {link}{download}.',
 	},
 	labels: {
 		latin: 'латиница',

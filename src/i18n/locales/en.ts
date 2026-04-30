@@ -10,7 +10,7 @@ export default {
 	title: "DSL KeyPad \\| Type lots of Unicode characters via keyboard",
 	description: {
 		unicode: 'Thousands of Unicode symbols: {latin}, {cyrillic}, {runes}, {glagolitic}, {math}, {alchemy} and much {other} become easily accessible with DSL KeyPad.',
-		requirement: '*Requires {link} installation (\u200A{download}\u200A).',
+		requirement: '*Requires {link} installation{download}.',
 	},
 	labels: {
 		latin: 'Latin',

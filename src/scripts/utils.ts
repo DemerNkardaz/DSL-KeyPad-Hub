@@ -25,3 +25,14 @@ export function getDownloadUrl(version: string): string {
 export function pathWithBase(path: string): string {
 	return `${baseUrl.replace(/\/+$/, '')}/${path.replace(/^\/+/, '')}`
 }
+
+export function parseToMarkup(rawString: string): string {
+	let html = rawString
+		.replace(/\[([^\]@]+)@([^\]]+)\]/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+	return html
+}
+
+export function randomObjectKey<T extends Record<string, unknown>>(obj: T): keyof T {
+    const keys = Object.keys(obj) as (keyof T)[]
+    return keys[Math.floor(Math.random() * keys.length)]
+}

@@ -1,11 +1,43 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue';
-import { backgroundRandomCharacters } from '../../data/random_character';
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
+import { backgroundRandomCharacters, randomCharacters } from '../../data/random_character';
+import { randomObjectKey } from '../../scripts/utils';
+import { locale } from '../../i18n';
+
 import Description from './Description.vue';
 
+type AppLocale = keyof Omit<typeof randomCharacters[keyof typeof randomCharacters], 'item'>
+
+const currentLocale = ref<AppLocale>(locale.value as AppLocale);
 const scatterEl = ref<HTMLElement | null>(null);
 
+const randomCharacterEntryID = randomObjectKey(randomCharacters);
+const randomCharacterItem = randomCharacters[randomCharacterEntryID].item;
+const randomCharacterLocales = randomCharacters[randomCharacterEntryID][currentLocale.value];
+
 let intervalId: number | undefined;
+
+const titleParts = computed(() => {
+		const parts = []
+		let lastIndex = 0
+		const re = /\{([^|]+)\|([^}]+)\}/g
+		for (const match of randomCharacterLocales.title.matchAll(re)) {
+				if (match.index > lastIndex) {
+						parts.push({ type: 'text', value: randomCharacterLocales.title.slice(lastIndex, match.index) })
+				}
+				parts.push({ type: 'span', text: match[1], title: match[2] })
+				lastIndex = match.index + match[0].length
+		}
+		if (lastIndex < randomCharacterLocales.title.length) {
+				parts.push({ type: 'text', value: randomCharacterLocales.title.slice(lastIndex) })
+		}
+		return parts
+})
+
+const subtitleLinks = computed(() => {
+    const matches = [...randomCharacterLocales.subtitle.matchAll(/\[([^\]@]+)@([^\]]+)\]/g)]
+    return matches.map(m => ({ text: m[1], url: m[2] }))
+})
 
 function scatterBackgroundCharacters(characters: string[] | string = backgroundRandomCharacters): string {
 	if (Array.isArray(characters)) {
@@ -207,8 +239,29 @@ defineProps<{
 		</div>
 		<div class="intro-section__content">
 			<div class="intro-section__content__random-character">
-				<p class="intro-section__content__random-character__symbol">&#x2BE1;</p>
-				<p class="intro-section__content__random-character__subtitle">Аид<br>[ <a href="https://ru.wikipedia.org/wiki/Ураническая_астрология" target="_blank" rel="noopener noreferrer">Ураническая астрология</a> ]</p>
+				<p class="intro-section__content__random-character__symbol">{{ randomCharacterItem }}</p>
+				<p class="intro-section__content__random-character__subtitle">
+					<span>
+						<template v-for="part of titleParts">
+							<span v-if="part.type === 'span'" class="underline-dot question" :title="part.title">{{ part.text }}</span>
+							<template v-else>{{ part.value }}</template>
+						</template>
+					</span>
+					<br>
+					<span v-if="subtitleLinks.length">
+						[
+						<template v-for="(link, i) of subtitleLinks">
+							<template v-if="i > 0">, </template>
+							<a :href="link.url" target="_blank" rel="noopener noreferrer">{{ link.text }}</a>
+						</template>
+						]
+					</span>
+					<span v-else>
+						[
+						{{ randomCharacterLocales.subtitle }}
+						]
+					</span>
+				</p>
 			</div>
 			<h1 class="intro-section__content__header">
 				{{ versionedTitle }}

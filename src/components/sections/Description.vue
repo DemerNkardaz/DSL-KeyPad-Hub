@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import { isWindows } from '../../scripts/constants';
 
 const { t } = useI18n()
 
@@ -45,7 +46,7 @@ const	titles = {
         <a class="a-golden" href="https://www.autohotkey.com/" target="_blank" rel="noopener noreferrer">AutoHotkey v2</a>
       </template>
       <template #download>
-        <a class="a-golden" href="https://www.autohotkey.com/download/ahk-v2.exe" download>{{ t('labels.download') }}</a>
+        <span v-if="isWindows"> (&hairsp;<a class="a-golden" href="https://www.autohotkey.com/download/ahk-v2.exe" download>{{ t('labels.download') }}</a>&hairsp;)</span>
       </template>
     </i18n-t>
   </p>
