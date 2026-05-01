@@ -282,160 +282,160 @@ export const randomCharacters = {
 			subtitle: "[Валахо-молдавская кириллица@https://ru.wikipedia.org/wiki/Валахо-молдавская_азбука]"
 		}
 	},
-thorn: {
-    item: "\u00DE",
-    en: {
-        title: "Thorn",
-        subtitle: "[Old English@https://en.wikipedia.org/wiki/Old_English], [Icelandic@https://en.wikipedia.org/wiki/Icelandic_language]"
-    },
-    ru: {
-        title: "Торн",
-        subtitle: "[Древнеанглийский@https://ru.wikipedia.org/wiki/Древнеанглийский], [Исландский@https://ru.wikipedia.org/wiki/Исландский_язык]"
-    }
-},
-egyptological_yod: {
-    item: "\uA7BC",
-    en: {
-        title: "Yod",
-        subtitle: "[Egyptological Transliteration@https://en.wikipedia.org/wiki/Transliteration_of_Ancient_Egyptian]"
-    },
-    ru: {
-        title: "Йод",
-        subtitle: "[Египтологическая транслитерация@https://ru.wikipedia.org/wiki/Транслитерация_египетских_текстов]"
-    }
-},
-omega_psili_perispomeni_prosgegrammeni: {
-    item: "\u1FAE",
-    en: {
-        title: "Omega with Psili, Perispomeni and Prosgegrammeni",
-        subtitle: "[Ancient Greek@https://en.wikipedia.org/wiki/Ancient_Greek]"
-    },
-    ru: {
-        title: "Омега с псили, периспомени и просгеграммени",
-        subtitle: "[Древнегреческий@https://ru.wikipedia.org/wiki/Древнегреческий_язык]"
-    }
-},
-samaritan_alaf: {
-    item: "\u0800",
-    en: {
-        title: "Alaf",
-        subtitle: "[Samaritan@https://en.wikipedia.org/wiki/Samaritan_script]"
-    },
-    ru: {
-        title: "Алаф",
-        subtitle: "[Самаритянский@https://ru.wikipedia.org/wiki/Самаритянское_письмо]"
-    }
-},
-algiz: {
-    item: "\u16C9",
-    en: {
-        title: "Algiz",
-        subtitle: "[Elder Futhark@https://en.wikipedia.org/wiki/Elder_Futhark]"
-    },
-    ru: {
-        title: "Альгиз",
-        subtitle: "[Старший Футарк@https://ru.wikipedia.org/wiki/Руны]"
-    }
-},
-fehu: {
-    item: "\u16A0",
-    en: {
-        title: "Fehu",
-        subtitle: "[Elder Futhark@https://en.wikipedia.org/wiki/Elder_Futhark]"
-    },
-    ru: {
-        title: "Феху",
-        subtitle: "[Старший Футарк@https://ru.wikipedia.org/wiki/Руны]"
-    }
-},
-othala: {
-    item: "\u16DF",
-    en: {
-        title: "Othala",
-        subtitle: "[Elder Futhark@https://en.wikipedia.org/wiki/Elder_Futhark]"
-    },
-    ru: {
-        title: "Одал",
-        subtitle: "[Старший Футарк@https://ru.wikipedia.org/wiki/Руны]"
-    }
-},
-tvimadur: {
-    item: "\u16EF",
-    en: {
-        title: "Tvímánuður",
-        subtitle: "[Runic Calendar@https://en.wikipedia.org/wiki/Runic_calendar]"
-    },
-    ru: {
-        title: "Твимадур",
-        subtitle: "[Рунический календарь@https://ru.wikipedia.org/wiki/Рунический_календарь]"
-    }
-},
-orkhon_aeb: {
-    item: "\uD803\uDC0B",
-    en: {
-        title: "Aeb",
-        subtitle: "[Orkhon Variant of Old Turkic@https://en.wikipedia.org/wiki/Old_Turkic_script]"
-    },
-    ru: {
-        title: "Ябь",
-        subtitle: "[Орхонский репертуар Древнетюркского@https://ru.wikipedia.org/wiki/Древнетюркское_письмо#Орхонский_репертуар]"
-    }
-},
-orkhon_at: {
-    item: "\uD803\uDC43",
-    en: {
-        title: "At",
-        subtitle: "[Orkhon Variant of Old Turkic@https://en.wikipedia.org/wiki/Old_Turkic_script]"
-    },
-    ru: {
-        title: "Ат",
-        subtitle: "[Орхонский репертуар Древнетюркского@https://ru.wikipedia.org/wiki/Древнетюркское_письмо#Орхонский_репертуар]"
-    }
-},
-yenisei_aeb: {
-    item: "\uD803\uDC0C",
-    en: {
-        title: "Aeb",
-        subtitle: "[Yenisei Variant of Old Turkic@https://en.wikipedia.org/wiki/Old_Turkic_script]"
-    },
-    ru: {
-        title: "Ябь",
-        subtitle: "[Енисейский репертуар Древнетюркского@https://ru.wikipedia.org/wiki/Древнетюркское_письмо#Енисейский_репертуар]"
-    }
-},
-yenisei_at: {
-    item: "\uD803\uDC44",
-    en: {
-        title: "At",
-        subtitle: "[Yenisei Variant of Old Turkic@https://en.wikipedia.org/wiki/Old_Turkic_script]"
-    },
-    ru: {
-        title: "Ат",
-        subtitle: "[Енисейский репертуар Древнетюркского@https://ru.wikipedia.org/wiki/Древнетюркское_письмо#Енисейский_репертуар]"
-    }
-},
-ipa_near_close_near_back_rounded_vowel: {
-    item: "\u028A",
-    en: {
-        title: "Near-close near-back rounded vowel",
-        subtitle: "[International Phonetic Alphabet@https://en.wikipedia.org/wiki/International_Phonetic_Alphabet]"
-    },
-    ru: {
-        title: "Ненапряжённый огублённый гласный заднего ряда верхнего подъёма",
-        subtitle: "[Международный фонетический алфавит@https://ru.wikipedia.org/wiki/Международный_фонетический_алфавит]"
-    }
-},
-ipa_epiglottal_polsive: {
-    item: "\u02A1",
-    en: {
-        title: "Epiglottal plosive",
-        subtitle: "[International Phonetic Alphabet@https://en.wikipedia.org/wiki/International_Phonetic_Alphabet]"
-    },
-    ru: {
-        title: "Эпиглоттальный взрывной согласный",
-        subtitle: "[Международный фонетический алфавит@https://ru.wikipedia.org/wiki/Международный_фонетический_алфавит]"
-    }
-},
+	thorn: {
+		item: "\u00DE",
+		en: {
+			title: "Thorn",
+			subtitle: "[Old English@https://en.wikipedia.org/wiki/Old_English], [Icelandic@https://en.wikipedia.org/wiki/Icelandic_language]"
+		},
+		ru: {
+			title: "Торн",
+			subtitle: "[Древнеанглийский@https://ru.wikipedia.org/wiki/Древнеанглийский], [Исландский@https://ru.wikipedia.org/wiki/Исландский_язык]"
+		}
+	},
+	egyptological_yod: {
+		item: "\uA7BC",
+		en: {
+			title: "Yod",
+			subtitle: "[Egyptological Transliteration@https://en.wikipedia.org/wiki/Transliteration_of_Ancient_Egyptian]"
+		},
+		ru: {
+			title: "Йод",
+			subtitle: "[Египтологическая транслитерация@https://ru.wikipedia.org/wiki/Транслитерация_египетских_текстов]"
+		}
+	},
+	omega_psili_perispomeni_prosgegrammeni: {
+		item: "\u1FAE",
+		en: {
+			title: "Omega with Psili, Perispomeni and Prosgegrammeni",
+			subtitle: "[Ancient Greek@https://en.wikipedia.org/wiki/Ancient_Greek]"
+		},
+		ru: {
+			title: "Омега с псили, периспомени и просгеграммени",
+			subtitle: "[Древнегреческий@https://ru.wikipedia.org/wiki/Древнегреческий_язык]"
+		}
+	},
+	samaritan_alaf: {
+		item: "\u0800",
+		en: {
+			title: "Alaf",
+			subtitle: "[Samaritan@https://en.wikipedia.org/wiki/Samaritan_script]"
+		},
+		ru: {
+			title: "Алаф",
+			subtitle: "[Самаритянский@https://ru.wikipedia.org/wiki/Самаритянское_письмо]"
+		}
+	},
+	algiz: {
+		item: "\u16C9",
+		en: {
+			title: "Algiz",
+			subtitle: "[Elder Futhark@https://en.wikipedia.org/wiki/Elder_Futhark]"
+		},
+		ru: {
+			title: "Альгиз",
+			subtitle: "[Старший Футарк@https://ru.wikipedia.org/wiki/Руны]"
+		}
+	},
+	fehu: {
+		item: "\u16A0",
+		en: {
+			title: "Fehu",
+			subtitle: "[Elder Futhark@https://en.wikipedia.org/wiki/Elder_Futhark]"
+		},
+		ru: {
+			title: "Феху",
+			subtitle: "[Старший Футарк@https://ru.wikipedia.org/wiki/Руны]"
+		}
+	},
+	othala: {
+		item: "\u16DF",
+		en: {
+			title: "Othala",
+			subtitle: "[Elder Futhark@https://en.wikipedia.org/wiki/Elder_Futhark]"
+		},
+		ru: {
+			title: "Одал",
+			subtitle: "[Старший Футарк@https://ru.wikipedia.org/wiki/Руны]"
+		}
+	},
+	tvimadur: {
+		item: "\u16EF",
+		en: {
+			title: "Tvímánuður",
+			subtitle: "[Runic Calendar@https://en.wikipedia.org/wiki/Runic_calendar]"
+		},
+		ru: {
+			title: "Твимадур",
+			subtitle: "[Рунический календарь@https://ru.wikipedia.org/wiki/Рунический_календарь]"
+		}
+	},
+	orkhon_aeb: {
+		item: "\uD803\uDC0B",
+		en: {
+			title: "Aeb",
+			subtitle: "[Orkhon Variant of Old Turkic@https://en.wikipedia.org/wiki/Old_Turkic_script]"
+		},
+		ru: {
+			title: "Ябь",
+			subtitle: "[Орхонский репертуар Древнетюркского@https://ru.wikipedia.org/wiki/Древнетюркское_письмо#Орхонский_репертуар]"
+		}
+	},
+	orkhon_at: {
+		item: "\uD803\uDC43",
+		en: {
+			title: "At",
+			subtitle: "[Orkhon Variant of Old Turkic@https://en.wikipedia.org/wiki/Old_Turkic_script]"
+		},
+		ru: {
+			title: "Ат",
+			subtitle: "[Орхонский репертуар Древнетюркского@https://ru.wikipedia.org/wiki/Древнетюркское_письмо#Орхонский_репертуар]"
+		}
+	},
+	yenisei_aeb: {
+		item: "\uD803\uDC0C",
+		en: {
+			title: "Aeb",
+			subtitle: "[Yenisei Variant of Old Turkic@https://en.wikipedia.org/wiki/Old_Turkic_script]"
+		},
+		ru: {
+			title: "Ябь",
+			subtitle: "[Енисейский репертуар Древнетюркского@https://ru.wikipedia.org/wiki/Древнетюркское_письмо#Енисейский_репертуар]"
+		}
+	},
+	yenisei_at: {
+		item: "\uD803\uDC44",
+		en: {
+			title: "At",
+			subtitle: "[Yenisei Variant of Old Turkic@https://en.wikipedia.org/wiki/Old_Turkic_script]"
+		},
+		ru: {
+			title: "Ат",
+			subtitle: "[Енисейский репертуар Древнетюркского@https://ru.wikipedia.org/wiki/Древнетюркское_письмо#Енисейский_репертуар]"
+		}
+	},
+	ipa_near_close_near_back_rounded_vowel: {
+		item: "\u028A",
+		en: {
+			title: "Near-close near-back rounded vowel",
+			subtitle: "[International Phonetic Alphabet@https://en.wikipedia.org/wiki/International_Phonetic_Alphabet]"
+		},
+		ru: {
+			title: "Ненапряжённый огублённый гласный заднего ряда верхнего подъёма",
+			subtitle: "[Международный фонетический алфавит@https://ru.wikipedia.org/wiki/Международный_фонетический_алфавит]"
+		}
+	},
+	ipa_epiglottal_polsive: {
+		item: "\u02A1",
+		en: {
+			title: "Epiglottal plosive",
+			subtitle: "[International Phonetic Alphabet@https://en.wikipedia.org/wiki/International_Phonetic_Alphabet]"
+		},
+		ru: {
+			title: "Эпиглоттальный взрывной согласный",
+			subtitle: "[Международный фонетический алфавит@https://ru.wikipedia.org/wiki/Международный_фонетический_алфавит]"
+		}
+	},
 	chess_knight_queen: {
 		item: "\uD83E\uDE51",
 		en: {
