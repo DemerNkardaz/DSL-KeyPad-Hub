@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { isWindows } from '../../scripts/constants';
+import { isWindows } from '../../../scripts/constants';
 
 const { t } = useI18n()
 

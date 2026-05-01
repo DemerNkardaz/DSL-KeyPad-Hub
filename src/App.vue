@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Header from './components/header/Header.vue'
-import IntroSection from './components/sections/IntroSection.vue'
+import IntroSection from './components/sections/intro/IntroSection.vue'
 import Main from './components/main/Main.vue'
 import Footer from './components/footer/Footer.vue'
 

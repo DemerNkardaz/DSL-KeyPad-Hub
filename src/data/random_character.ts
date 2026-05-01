@@ -1,22 +1,18 @@
 type LocaleData = {
-  title: string
+	title: string
 	subtitle: string
 }
 
-type RandomCharacter = {
+export type RandomCharacter = {
 	item: string
-  en: LocaleData
+	en: LocaleData
 	ru: LocaleData
 	style?: string
-	game?: string
-	background?: string
+	customCharacters?: string
+	componentName?: string
 }
 
 type RandomCharacters = Record<string, RandomCharacter>
-
-export const backgroundCharacters = {
-	yi_jing: "",
-}
 
 export const randomCharacters = {
 	big_yus_iotified: {
@@ -142,6 +138,7 @@ export const randomCharacters = {
 	},
 	sulfur: {
 		item: "\uD83D\uDF0D",
+		customCharacters: "🜀🜁🜂🜃🜄🝇🝡🝢🝠",
 		en: {
 			title: "Sulfur",
 			subtitle: "[Alchemy@https://en.wikipedia.org/wiki/Alchemy]"

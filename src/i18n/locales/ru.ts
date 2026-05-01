@@ -22,6 +22,6 @@ export default {
 		other: 'другое',
 		download: 'скачать',
 	},
-	features: "Windows \\| Открытое и\u00A0свободное\u00A0ПО \\| Кастомизируемое \\| Лицензия\u00A0MIT",
+	features: "Windows\u00A0\\| Открытое\u00A0и\u00A0свободное\u00A0ПО\u00A0\\| Кастомизируемое\u00A0\\| Лицензия\u00A0MIT",
 	download: "Скачать",
 }

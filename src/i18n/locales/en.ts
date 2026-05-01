@@ -22,6 +22,6 @@ export default {
 		other: 'more',
 		download: 'download',
 	},
-	features: "Windows \\| Free & Open Source \\| Customizable \\| MIT\u00A0License",
+	features: "Windows\u00A0\\| Free & Open Source\u00A0\\| Customizable\u00A0\\| MIT\u00A0License",
 	download: "Download",
 }
