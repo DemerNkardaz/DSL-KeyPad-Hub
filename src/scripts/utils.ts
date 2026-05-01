@@ -33,6 +33,28 @@ export function parseToMarkup(rawString: string): string {
 }
 
 export function randomObjectKey<T extends Record<string, unknown>>(obj: T): keyof T {
-    const keys = Object.keys(obj) as (keyof T)[]
-    return keys[Math.floor(Math.random() * keys.length)]
+	const keys = Object.keys(obj) as (keyof T)[]
+	return keys[Math.floor(Math.random() * keys.length)]
+}
+
+export function randomItem<T>(...items: { item: T; chance?: number }[]): T {
+  const definedTotal = items.reduce((sum, i) => sum + (i.chance ?? 0), 0)
+  const undefinedCount = items.filter(i => i.chance === undefined).length
+  const remainingChance = Math.max(0, 100 - definedTotal)
+  const autoChance = undefinedCount > 0 ? remainingChance / undefinedCount : 0
+
+  const normalized = items.map(i => ({
+    item: i.item,
+    chance: i.chance ?? autoChance,
+  }))
+
+  const totalChance = normalized.reduce((sum, i) => sum + i.chance, 0)
+  let random = Math.random() * totalChance
+
+  for (const { item, chance } of normalized) {
+    random -= chance
+    if (random <= 0) return item
+  }
+
+  return normalized[normalized.length - 1].item
 }

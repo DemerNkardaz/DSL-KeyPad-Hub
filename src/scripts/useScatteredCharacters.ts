@@ -1,5 +1,6 @@
 import { ref, toValue, type MaybeRef } from 'vue'
 import { backgroundRandomCharacters } from '../data/random_character'
+import { randomObjectKey } from './utils'
 
 interface PlacedChar {
   char: string
@@ -10,12 +11,12 @@ interface PlacedChar {
 }
 
 export function useScatteredCharacters(
-  characters: MaybeRef<string[] | string | undefined> = backgroundRandomCharacters
+  characters: MaybeRef<string[] | string | undefined> = backgroundRandomCharacters[randomObjectKey(backgroundRandomCharacters)]
 ) {
   const placedChars = ref<PlacedChar[]>([])
 
   function scatter() {
-    const resolved = toValue(characters) || backgroundRandomCharacters
+    const resolved = toValue(characters) || backgroundRandomCharacters[randomObjectKey(backgroundRandomCharacters)]
     const source = Array.isArray(resolved)
       ? resolved[Math.floor(Math.random() * resolved.length)]
       : resolved
