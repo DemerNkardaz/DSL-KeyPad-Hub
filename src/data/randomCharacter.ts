@@ -1,4 +1,6 @@
+import type { Component } from "vue";
 import { randomItem } from "../scripts/utils";
+import ZhongguoCosmologicalLinesRings from "../components/sections/intro/ZhongguoCosmologicalLinesRings.vue";
 
 export const backgroundRandomCharacters = {
 	random: "\u01F7\u00DE\uA768\u00D8\u016E\u00C7\u01E2\uA728\u1E9E\uA7D5\u01B1\u1EB3\u1D76\u1F86\u1F23\u03DE\u046C\uA64A\u0518\uA650\u0466\u040F\uA65E\uA68E\uD83D\uDF0D\u2645\u2BE0\u2BE1\u263F\uD83D\uDF7B\u262F\u2630\u2636\u16D7\u16DF\u16C9\u2625\u269A\u2624\u2E19\u2627", // Random
@@ -20,6 +22,44 @@ export const backgroundRandomCharacters = {
 	roman: "\u2160\u2161\u2162\u2163\u2164\u2165\u2166\u2167\u2168\u2169\u216A\u216B\u216C\u216D\u216E\u216F\u2181\u2182\u2187\u2188" // Roman
 };
 
+const backgroundRings = {
+	YiJing: [
+		[
+			'\u262F',
+			'\u268C\u268E\u268F\u268D',
+			'\u2630\u2634\u2635\u2636\u2637\u2633\u2632\u2631',
+			'\u4DC0\u4DC2\u4DC4\u4DC6\u4DC8\u4DCA\u4DCC\u4DCE\u4DD0\u4DD2\u4DD4\u4DD6\u4DD8\u4DDA\u4DDC\u4DDE\u4DE0\u4DE2\u4DE4\u4DE6\u4DE8\u4DEA\u4DEC\u4DEE\u4DF0\u4DF2\u4DF4\u4DF6\u4DF8\u4DFA\u4DFC\u4DFE\u4DC1\u4DC3\u4DC5\u4DC7\u4DC9\u4DCB\u4DCD\u4DCF\u4DD1\u4DD3\u4DD5\u4DD7\u4DD9\u4DDB\u4DDD\u4DDF\u4DE1\u4DE3\u4DE5\u4DE7\u4DE9\u4DEB\u4DED\u4DEF\u4DF1\u4DF3\u4DF5\u4DF7\u4DF9\u4DFB\u4DFD\u4DFF'
+		],
+		256,
+		{
+			1280: 200,
+			900: 150,
+			700: 128,
+			600: 100,
+		}
+	],
+	TaiXuanJing: [
+		[
+			'\uD834\uDF00\u268A\u268B',
+			'\u268C\u268E\u268F\u268D\uD834\uDF01\uD834\uDF02\uD834\uDF03\uD834\uDF04\uD834\uDF05',
+			'\uD834\uDF06\uD834\uDF07\uD834\uDF08\uD834\uDF09\uD834\uDF0A\uD834\uDF0B\uD834\uDF0C\uD834\uDF0D\uD834\uDF0E\uD834\uDF0F\uD834\uDF10\uD834\uDF11\uD834\uDF12\uD834\uDF13\uD834\uDF14\uD834\uDF15\uD834\uDF16\uD834\uDF17\uD834\uDF18\uD834\uDF19\uD834\uDF1A\uD834\uDF1A\uD834\uDF1B\uD834\uDF1C\uD834\uDF1D\uD834\uDF1E\uD834\uDF1F\uD834\uDF20\uD834\uDF21\uD834\uDF22\uD834\uDF23\uD834\uDF24\uD834\uDF25\uD834\uDF26\uD834\uDF27\uD834\uDF28\uD834\uDF29\uD834\uDF2A\uD834\uDF2B\uD834\uDF2C\uD834\uDF2D\uD834\uDF2E\uD834\uDF2F\uD834\uDF30\uD834\uDF31\uD834\uDF32\uD834\uDF33\uD834\uDF34\uD834\uDF35\uD834\uDF36\uD834\uDF37\uD834\uDF38\uD834\uDF39\uD834\uDF3A\uD834\uDF3B\uD834\uDF3C\uD834\uDF3D\uD834\uDF3E\uD834\uDF3F\uD834\uDF40\uD834\uDF41\uD834\uDF42\uD834\uDF43\uD834\uDF44\uD834\uDF45\uD834\uDF46\uD834\uDF47\uD834\uDF48\uD834\uDF49\uD834\uDF4A\uD834\uDF4B\uD834\uDF4C\uD834\uDF4D\uD834\uDF4E\uD834\uDF4F\uD834\uDF50\uD834\uDF51\uD834\uDF52\uD834\uDF53\uD834\uDF54\uD834\uDF55\uD834\uDF56'
+		],
+		256,
+		{
+			1280: 200,
+			900: 150,
+			700: 128,
+			600: 100,
+		},
+		0.55
+	]
+}
+
+const predefinedComponentProps = {
+	YiJing: { arguments: backgroundRings.YiJing, animate: [[0, 1, 2, 3], [-120, 120, -120, 120]] },
+	TaiXuanJing: { arguments: backgroundRings.TaiXuanJing, animate: [[0, 1, 2], [-120, 120, -120]] }
+}
+
 type LocaleData = {
 	title: string
 	subtitle: string
@@ -31,7 +71,8 @@ export type RandomCharacter = {
 	ru: LocaleData
 	style?: string
 	customCharacters?: string
-	componentName?: string
+	component?: Component
+	componentProps?: Record<string, unknown>
 }
 
 type RandomCharacters = Record<string, RandomCharacter>
@@ -50,6 +91,8 @@ export const randomCharacters = {
 	},
 	yin_yang: {
 		item: "\u262F\uFE0E",
+		component: ZhongguoCosmologicalLinesRings,
+		componentProps: predefinedComponentProps.YiJing,
 		en: {
 			title: "Yīn Yáng",
 			subtitle: "[Dào@https://en.wikipedia.org/wiki/Tao]"
@@ -61,6 +104,8 @@ export const randomCharacters = {
 	},
 	trigram_dui: {
 		item: "\u2631",
+		component: ZhongguoCosmologicalLinesRings,
+		componentProps: predefinedComponentProps.YiJing,
 		en: {
 			title: "Trigram {Duì|兌 [duì]} (Lake)",
 			subtitle: "[Eight Trigrams@https://en.wikipedia.org/wiki/Bagua]"
@@ -72,6 +117,8 @@ export const randomCharacters = {
 	},
 	trigram_xun: {
 		item: "\u2634",
+		component: ZhongguoCosmologicalLinesRings,
+		componentProps: predefinedComponentProps.YiJing,
 		en: {
 			title: "Trigram {Xùn|巽 [xùn]} (Wind)",
 			subtitle: "[Eight Trigrams@https://en.wikipedia.org/wiki/Bagua]"
@@ -83,6 +130,8 @@ export const randomCharacters = {
 	},
 	trigram_kan: {
 		item: "\u2635",
+		component: ZhongguoCosmologicalLinesRings,
+		componentProps: predefinedComponentProps.YiJing,
 		en: {
 			title: "Trigram {Kǎn|坎 [kǎn]} (Water)",
 			subtitle: "[Eight Trigrams@https://en.wikipedia.org/wiki/Bagua]"
@@ -94,6 +143,8 @@ export const randomCharacters = {
 	},
 	hexagram_tai: {
 		item: "\u4DCA",
+		component: ZhongguoCosmologicalLinesRings,
+		componentProps: predefinedComponentProps.YiJing,
 		en: {
 			title: "Hexagram {Tài|泰 [tài]} (Peace)",
 			subtitle: "[Sixty-four Hexagrams@https://en.wikipedia.org/wiki/List_of_hexagrams_of_the_I_Ching]"
@@ -105,6 +156,8 @@ export const randomCharacters = {
 	},
 	hexagram_li: {
 		item: "\u4DDD",
+		component: ZhongguoCosmologicalLinesRings,
+		componentProps: predefinedComponentProps.YiJing,
 		en: {
 			title: "Hexagram {Lí|離 [lí]} (Radiance)",
 			subtitle: "[Sixty-four Hexagrams@https://en.wikipedia.org/wiki/List_of_hexagrams_of_the_I_Ching]"
@@ -116,6 +169,8 @@ export const randomCharacters = {
 	},
 	tetragram_shang: {
 		item: "\uD834\uDF0C",
+		component: ZhongguoCosmologicalLinesRings,
+		componentProps: predefinedComponentProps.TaiXuanJing,
 		en: {
 			title: "Tetragram {Shàng|上 [shàng]} (Ascension)",
 			subtitle: "[Eighty-one Tetragrams@https://en.wikipedia.org/wiki/Taixuanjing]"
@@ -127,6 +182,8 @@ export const randomCharacters = {
 	},
 	tetragram_le: {
 		item: "\uD834\uDF1D",
+		component: ZhongguoCosmologicalLinesRings,
+		componentProps: predefinedComponentProps.TaiXuanJing,
 		en: {
 			title: "Tetragram {Lè|乐 [lè]} (Joy)",
 			subtitle: "[Eighty-one Tetragrams@https://en.wikipedia.org/wiki/Taixuanjing]"
@@ -139,28 +196,33 @@ export const randomCharacters = {
 	copper_venus: {
 		item: "\u2640\uFE0E",
 		en: {
-			title: "Copper / Venus",
-			subtitle: "[Alchemy@https://en.wikipedia.org/wiki/Alchemy], [Astrology@https://en.wikipedia.org/wiki/Astrology]"
+			title: "Copper / Venus / Female",
+			subtitle: "[Alchemy@https://en.wikipedia.org/wiki/Alchemy], [Astrology@https://en.wikipedia.org/wiki/Astrology], [Biology@https://en.wikipedia.org/wiki/Biology]"
 		},
 		ru: {
-			title: "Медь / Венера",
-			subtitle: "[Алхимия@https://ru.wikipedia.org/wiki/Алхимия], [Астрология@https://ru.wikipedia.org/wiki/Астрология]"
+			title: "Медь / Венера / Женский пол",
+			subtitle: "[Алхимия@https://ru.wikipedia.org/wiki/Алхимия], [Астрология@https://ru.wikipedia.org/wiki/Астрология], [Биология@https://ru.wikipedia.org/wiki/Биология]"
 		}
 	},
 	iron_mars: {
 		item: "\u2642\uFE0E",
 		en: {
-			title: "Iron / Mars",
-			subtitle: "[Alchemy@https://en.wikipedia.org/wiki/Alchemy], [Astrology@https://en.wikipedia.org/wiki/Astrology]"
+			title: "Iron / Mars / Male",
+			subtitle: "[Alchemy@https://en.wikipedia.org/wiki/Alchemy], [Astrology@https://en.wikipedia.org/wiki/Astrology], [Biology@https://en.wikipedia.org/wiki/Biology]"
 		},
 		ru: {
-			title: "Железо / Марс",
-			subtitle: "[Алхимия@https://ru.wikipedia.org/wiki/Алхимия], [Астрология@https://ru.wikipedia.org/wiki/Астрология]"
+			title: "Железо / Марс / Мужский пол",
+			subtitle: "[Алхимия@https://ru.wikipedia.org/wiki/Алхимия], [Астрология@https://ru.wikipedia.org/wiki/Астрология], [Биология@https://ru.wikipedia.org/wiki/Биология]"
 		}
 	},
 	sulfur: {
 		item: "\uD83D\uDF0D",
-		customCharacters: randomItem({ item: backgroundRandomCharacters.alchemy, chance: 75 }, { item: undefined }),
+		get customCharacters() {
+			return randomItem(
+				{ item: backgroundRandomCharacters.alchemy, chance: 75 },
+				{ item: undefined }
+			)
+		},
 		en: {
 			title: "Sulfur",
 			subtitle: "[Alchemy@https://en.wikipedia.org/wiki/Alchemy]"
@@ -290,7 +352,7 @@ export const randomCharacters = {
 		},
 		ru: {
 			title: "Торн",
-			subtitle: "[Древнеанглийский@https://ru.wikipedia.org/wiki/Древнеанглийский], [Исландский@https://ru.wikipedia.org/wiki/Исландский_язык]"
+			subtitle: "[Древнеанглийский@https://ru.wikipedia.org/wiki/Древнеанглийский_язык], [Исландский@https://ru.wikipedia.org/wiki/Исландский_язык]"
 		}
 	},
 	egyptological_yod: {

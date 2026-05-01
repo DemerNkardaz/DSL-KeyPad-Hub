@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { randomCharacters, type RandomCharacter } from '../../../data/random_character';
+import { randomCharacters, type RandomCharacter } from '../../../data/randomCharacter';
 import { randomObjectKey } from '../../../scripts/utils';
 import { locale } from '../../../i18n';
 
@@ -19,10 +19,6 @@ const currentLocale = ref<AppLocale>(locale.value as AppLocale);
 
 const characterEntryID = randomObjectKey(randomCharacters);
 const characterEntry = randomCharacters[characterEntryID] as RandomCharacter;
-
-const characterEntryHasStyle = computed(() => 'style' in characterEntry);
-const characterEntryHasCustomCharacters = computed(() => 'customCharacters' in characterEntry);
-const characterEntryHasComponentName = computed(() => 'componentName' in characterEntry);
 
 function parseString(raw: string): Part[] {
     const parts: Part[] = []
@@ -62,16 +58,14 @@ defineProps<{
 	<section class="intro-section">
 		<div class="intro-section__background">
 			<div class="intro-section__background__characters">
-				<template v-if="characterEntryHasComponentName"></template>
-				<template v-else>
-					<BackgroundScatteredCharacters :custom-characters="characterEntryHasCustomCharacters ? characterEntry.customCharacters : undefined" />
-				</template>
+				<component v-if="characterEntry.component" :is="characterEntry.component" v-bind="characterEntry.componentProps" />
+				<BackgroundScatteredCharacters v-else :custom-characters="characterEntry.customCharacters" />
 			</div>
 			<div class="intro-section__background__gradient"></div>
 		</div>
 		<div class="intro-section__content">
 			<div class="intro-section__content__random-character">
-				<p class="intro-section__content__random-character__symbol" :style="characterEntryHasStyle ? characterEntry.style : null">{{ characterEntry.item }}</p>
+				<p class="intro-section__content__random-character__symbol" :style="characterEntry.style || null">{{ characterEntry.item }}</p>
 					<p class="intro-section__content__random-character__caption">
 						<span>
 							<template v-for="part of titleParts">

@@ -5,7 +5,7 @@ import Main from './components/main/Main.vue'
 import Footer from './components/footer/Footer.vue'
 
 import { ref, onMounted, computed } from 'vue'
-import { getLatestRelease } from './scripts/fetch_repository_data'
+import { getLatestRelease } from './scripts/fetchRepostiryData'
 import { formatTitle } from './scripts/utils'
 import { useDocumentMeta } from './scripts/composable'
 import { useI18n } from 'vue-i18n'
