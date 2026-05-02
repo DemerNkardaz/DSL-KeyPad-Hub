@@ -102,3 +102,26 @@
 	min-height: 1.15em;
 	box-sizing: border-box;
 }
+
+.transitions {
+	transition: all 150ms ease;
+}
+
+.hidden {
+	opacity: 0;
+	-webkit-user-select: none;
+	user-select: none;
+	pointer-events: none;
+}
+
+.transition-layer {
+	opacity: 1;
+	transform: translateY(0);
+	transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.transition-layer.hidden {
+	opacity: 0;
+	transform: translateY(10px);
+	pointer-events: none;
+}

@@ -14,6 +14,3 @@ const uaData = (navigator as unknown as {
 }).userAgentData
 
 export const isWindows = uaData?.platform === 'Windows' || navigator.userAgent.includes('Windows')
-
-export const pageWidth = window.innerWidth
-export const pageHeight = window.innerHeight

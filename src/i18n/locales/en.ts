@@ -52,4 +52,5 @@ export default {
 	},
 	features: "Windows\u00A0\\| Free & Open Source\u00A0\\| Customizable\u00A0\\| MIT\u00A0License",
 	download: "Download",
+	play: "Play",
 }

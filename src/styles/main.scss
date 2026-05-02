@@ -3,6 +3,7 @@
 
 :root {
 	interpolate-size: allow-keywords;
+	--fonts-default: 'Roboto', system-ui, -apple-system, sans-serif;
 }
 
 *,
@@ -57,7 +58,7 @@ html {
 	-webkit-text-size-adjust: 100%;
 
 	color: $text-main;
-	font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+	font-family: var(--fonts-default);
 }
 
 body {

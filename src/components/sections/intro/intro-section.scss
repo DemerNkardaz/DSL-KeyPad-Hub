@@ -39,9 +39,24 @@
 			color: color-mix(in srgb, $shadow-b-0, $shadow-a-0 80%);
 
 			& .chess-container, & .xiangqi-container {
-					position: absolute;
-					top: 0.25rem;
-					right: 27rem;
+				position: absolute;
+				top: 0.25rem;
+
+				left: 50%;
+				transform: translateX(8.5rem);
+				transition: all 0.5s ease-in-out;
+
+				@media screen and (max-width: 1050px) {
+					left: unset;
+					transform: unset;
+				}
+			}
+
+			& .btn-play {
+				position: absolute;
+				top: 1rem;
+				right: 1rem;
+				z-index: 10;
 			}
 		}
 

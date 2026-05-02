@@ -8,6 +8,7 @@ import Description from './Description.vue';
 import BackgroundScatteredCharacters from './BackgroundScatteredCharacters.vue';
 import { urlParams } from '../../../scripts/constants';
 import GameChessBoard from './GameChessBoard.vue';
+import GameXiangqiBoard from './GameXiangqiBoard.vue';
 
 type AppLocale = keyof Omit<typeof randomCharacters[keyof typeof randomCharacters], 'item'>
 
@@ -50,7 +51,6 @@ function parseString(raw: string): Part[] {
 const titleParts = computed(() => parseString(characterEntry[currentLocale.value].title))
 const subtitleParts = computed(() => parseString(characterEntry[currentLocale.value].subtitle))
 
-
 defineProps<{
 	versionedTitle: string
 }>()
@@ -63,6 +63,7 @@ defineProps<{
 		<div class="intro-section__background">
 			<div class="intro-section__background__characters">
 				<GameChessBoard v-if="urlPlay === 'chess'" :scale="0.72" />
+				<GameXiangqiBoard v-else-if="urlPlay === 'xiangqi'" :scale="0.72" />
 				<component v-else-if="characterEntry.component" :is="characterEntry.component" v-bind="characterEntry.componentProps" />
 				<BackgroundScatteredCharacters v-else :custom-characters="characterEntry.customCharacters" />
 			</div>

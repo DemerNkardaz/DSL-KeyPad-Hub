@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useChessGame } from '../../../scripts/composables/useChessGame'
 import { useI18n } from 'vue-i18n'
 import { baseUrl } from '../../../scripts/constants';
 
 const { t } = useI18n()
+const { windowWidth } = useWindowSize()
+const isBoardVisible = ref(false)
 
 const props = withDefaults(defineProps<{
   moveDelay?: number
@@ -86,7 +88,13 @@ function boardClass(): string[] {
 </style>
 
 <template>
-  <div class="chess-container" :style="{ padding: `${20 * s}px` }">
+		<div v-show="windowWidth <= 1050" class="btn-play transition-layer" :class="{ hidden: isBoardVisible }">
+			<Button variant="action" @click="isBoardVisible = true">
+				{{ t('play') }}
+			</Button>
+		</div>
+
+  <div class="chess-container transition-layer" :class="{ hidden: !isBoardVisible }" :style="{ padding: `${20 * s}px` }">
 
     <!-- Доска -->
     <div class="chess-board-wrapper">
