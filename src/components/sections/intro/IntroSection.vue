@@ -6,6 +6,8 @@ import { locale } from '../../../i18n';
 
 import Description from './Description.vue';
 import BackgroundScatteredCharacters from './BackgroundScatteredCharacters.vue';
+import { urlParams } from '../../../scripts/constants';
+import GameChessBoard from './GameChessBoard.vue';
 
 type AppLocale = keyof Omit<typeof randomCharacters[keyof typeof randomCharacters], 'item'>
 
@@ -19,6 +21,8 @@ const currentLocale = ref<AppLocale>(locale.value as AppLocale);
 
 const characterEntryID = randomObjectKey(randomCharacters);
 const characterEntry = randomCharacters[characterEntryID] as RandomCharacter;
+
+const urlPlay = urlParams.get('play')?.toLowerCase();
 
 function parseString(raw: string): Part[] {
     const parts: Part[] = []
@@ -58,7 +62,8 @@ defineProps<{
 	<section class="intro-section">
 		<div class="intro-section__background">
 			<div class="intro-section__background__characters">
-				<component v-if="characterEntry.component" :is="characterEntry.component" v-bind="characterEntry.componentProps" />
+				<GameChessBoard v-if="urlPlay === 'chess'" :scale="0.72" />
+				<component v-else-if="characterEntry.component" :is="characterEntry.component" v-bind="characterEntry.componentProps" />
 				<BackgroundScatteredCharacters v-else :custom-characters="characterEntry.customCharacters" />
 			</div>
 			<div class="intro-section__background__gradient"></div>

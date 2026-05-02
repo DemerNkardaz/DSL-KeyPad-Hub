@@ -1,3 +1,21 @@
+:root {
+	--accent-silver: #a8b0b3;
+	--accent-silver-medium: #b3b8bc;
+	--accent-silver-semilight: #bbc0c4;
+	--accent-silver-light: #ccd0d3;
+
+	--accent-warm-green: #36e03c;
+	--accent-blue: #6ebeff;
+	--accent-purple: #ad6eff;
+	--accent-red: #d82a2a;
+	--accent-red-pink: #d82a98;
+	--accent-orange: #f7ad01;
+
+	--restricted: #c75858;
+	--allowed: #58c758;
+	--accessed: #6e6eff;
+}
+
 $surface-0: #333;
 $surface-1: #222;
 $surface-2: #444;
@@ -16,13 +34,20 @@ $text-main: #eee;
 $text-secondary: #aaa;
 $text-tertiary: #333;
 $text-quaternary: #777;
+$text-quinary: #ccc;
 
 $accent-0: #ffd700;
 $accent-1: #ffe761;
 $accent-3: #aa6b39;
+
 $accent-b-0: #4fb574;
 $accent-b-1: #64dc90;
 $accent-b-3: #31834f;
+
+$accent-c-0: #a8b0b3;
+$accent-c-1: #b3b8bc;
+$accent-c-3: #bbc0c4;
+$accent-c-4: #ccd0d3;
 
 $mask-wavy-0: radial-gradient(81.55px at 50% calc(100% - 64px), #000 99%, #0000 101%) calc(50% - 64px) 0/128px 100%,
 radial-gradient(81.55px at 50% calc(100% + 64px), #0000 99%, #000 101%) 50% calc(100% - 32px)/128px 100% repeat-x;

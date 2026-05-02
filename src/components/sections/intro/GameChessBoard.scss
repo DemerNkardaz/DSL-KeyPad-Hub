@@ -1,0 +1,343 @@
+@use '@/styles/variables' as *;
+
+.chess-container {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	background: $surface-0;
+	border: 1px solid $surface-1;
+	color: $text-main;
+	border-radius: 15px;
+	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+	z-index: 10;
+	font-family: $fonts-game;
+}
+
+.chess-info-container {
+	display: flex;
+	gap: 10px;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.chess-turn-info {
+	text-align: center;
+}
+
+.chess-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	gap: 0.35em;
+	background-color: $accent-c-3;
+	border: 2px solid $accent-c-4;
+	padding-inline: 2em;
+	cursor: pointer;
+	border-radius: 2.5px;
+	line-height: 1;
+	transition: all 150ms ease;
+
+	overflow: hidden;
+	z-index: 1;
+
+	&:hover {
+		background-color: $accent-c-4;
+		border-color: v$accent-c-3;
+	}
+
+	&:active {
+		background-color: $accent-c-3;
+		border-color: $accent-c-4;
+	}
+
+	&>img {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.chess-btn-control {}
+
+.chess-side-buttons-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
+	position: absolute;
+	top: 0px;
+	left: -36px;
+}
+
+.chess-side-btn {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	color: $text-quinary;
+	padding: 5px;
+
+	background-color: $surface-2;
+	border: 1px solid $surface-1;
+
+	&:hover {
+		background-color: $surface-1;
+		border-color: $surface-2;
+	}
+
+	&:active {
+		background-color: $surface-2;
+		border-color: $surface-1;
+	}
+
+	&>img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+
+		&.invert {
+			filter: invert(100);
+		}
+	}
+
+	&.chess-side-btn-squared {
+		border-radius: 7px;
+	}
+}
+
+.chess-side-btn-allowed {
+	border-color: var(--allowed);
+}
+
+.chess-side-btn-restricted {
+	border-color: var(--restricted);
+
+	&::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%) rotate(-45deg);
+		width: 100%;
+		height: 1px;
+		background-color: var(--restricted);
+		border: 1px solid $surface-1;
+		z-index: 1;
+	}
+}
+
+.chess-board-wrapper {
+	position: relative;
+	display: inline-block;
+	margin-bottom: 15px;
+	border-radius: 15px;
+}
+
+.chess-board {
+	position: relative;
+	display: grid;
+	grid-template-columns: repeat(8, 60px);
+	grid-template-rows: repeat(8, 60px);
+	gap: 0;
+	border: 1px solid $surface-1;
+	/* border-radius: 15px; */
+	overflow: hidden;
+	/* margin-bottom: 15px; */
+	z-index: 1;
+
+	&::before,
+	&::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		transition: opacity 250ms ease, box-shadow 250ms ease;
+		pointer-events: none;
+		-webkit-user-select: none;
+		user-select: none;
+	}
+
+	&::before {
+		background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 40%, transparent 90%);
+		opacity: 0;
+		z-index: 2;
+	}
+
+	&.game-finished::before {
+		opacity: 1;
+	}
+
+	&::after {
+		box-shadow: inset 0 0 10px 5px transparent;
+		z-index: 3;
+	}
+
+	&.won::after {
+		box-shadow: inset 0 0 10px 5px var(--accent-warm-green);
+	}
+
+	&.won-blue::after {
+		box-shadow: inset 0 0 10px 5px var(--accent-blue);
+	}
+
+	&.won-white::after {
+		box-shadow: inset 0 0 10px 5px var(--accent-silver-light);
+	}
+
+	&.lost::after {
+		box-shadow: inset 0 0 10px 5px var(--accent-red);
+	}
+
+	&.draw::after {
+		box-shadow: inset 0 0 10px 5px var(--accent-gold);
+	}
+}
+
+.chess-on-board-status {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 5rem;
+	font-weight: bold;
+	font-style: italic;
+	filter: drop-shadow(0 0px 4px black);
+	pointer-events: none;
+	z-index: 2;
+}
+
+.chess-cell {
+	position: relative;
+	width: 60px;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 40px;
+	transition: background-color 0.3s;
+}
+
+.chess-cell-light {
+	background-color: #929292;
+}
+
+.chess-cell-dark {
+	background-color: #333;
+}
+
+.chess-cell-highlight {
+	border: 1px solid $accent-0 !important;
+	box-shadow: inset 0 0 5px 1px $accent-0 !important;
+}
+
+.chess-cell-selected {
+	border: 1px solid var(--accent-warm-green) !important;
+	box-shadow: inset 0 0 5px 1px var(--accent-warm-green) !important;
+}
+
+.chess-cell-selected-under-attack,
+.chess-cell-attacker-of-selected {
+	animation: pulse-attack 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse-attack {
+	0% {
+		border-color: var(--accent-red);
+		box-shadow: inset 0 0 6px 2px var(--accent-red);
+	}
+
+	50% {
+		border-color: transparent;
+		box-shadow: inset 0 0 6px 2px transparent;
+	}
+
+	100% {
+		border-color: var(--accent-red);
+		box-shadow: inset 0 0 6px 2px var(--accent-red);
+	}
+}
+
+.chess-cell-attackable {
+	border: 1px solid var(--accent-purple) !important;
+	box-shadow: inset 0 0 5px 1px var(--accent-purple) !important;
+}
+
+.chess-cell-attackable-hazardous {
+	border: 1px solid var(--accent-red-pink) !important;
+	box-shadow: inset 0 0 5px 1px var(--accent-red-pink) !important;
+}
+
+.chess-cell-unreachable {
+	/* border: 1px solid var(--border-ultra-dark) !important; */
+	/* box-shadow: inset 0 0 5px 1px var(--border-ultra-dark) !important; */
+	opacity: 0.5;
+}
+
+.chess-cell-hazardous {
+	border: 1px solid var(--accent-red) !important;
+	box-shadow: inset 0 0 5px 1px var(--accent-red) !important;
+}
+
+.chess-piece {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	pointer-events: none;
+	-webkit-user-select: none;
+	user-select: none;
+	transition: transform 0.3s ease-out;
+}
+
+.chess-move-animation {
+	position: absolute;
+	top: 0;
+	left: 0;
+	pointer-events: none;
+	z-index: 2;
+}
+
+.chess-piece-animation {
+	animation: chess-piece-move 300ms ease forwards;
+}
+
+@keyframes chess-piece-move {
+	from {
+		transform: translate(-50%, -50%);
+	}
+	to {
+		transform: translate(calc(var(--dx) - 50%), calc(var(--dy) - 50%));
+	}
+}
+
+.chess-piece-white {
+	color: $text-main;
+	filter: drop-shadow(0 0px 10px black);
+}
+
+.chess-piece-black {
+	color: #111;
+	filter: drop-shadow(0 0px 10px white);
+}
+
+.chess-turn-info {
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+}

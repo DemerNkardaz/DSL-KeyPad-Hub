@@ -1,4 +1,6 @@
 export const baseUrl = import.meta.env.BASE_URL || '/';
+export const urlParams = new URLSearchParams(window.location.search);
+
 export const repositoryOwner = 'DemerNkardaz';
 export const targetRepository = 'DSL-KeyPad';
 export const urlGithub = `https://github.com/${repositoryOwner}/${targetRepository}`;

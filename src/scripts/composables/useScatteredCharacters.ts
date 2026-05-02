@@ -1,6 +1,6 @@
 import { ref, toValue, type MaybeRef } from 'vue'
-import { backgroundRandomCharacters } from '../data/randomCharacter'
-import { randomObjectKey } from './utils'
+import { backgroundRandomCharacters } from '../../data/randomCharacter'
+import { randomObjectKey } from '../utils'
 
 interface PlacedChar {
   char: string

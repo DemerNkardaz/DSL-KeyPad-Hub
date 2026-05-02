@@ -1,6 +1,7 @@
 import type { Component } from "vue";
 import { randomItem } from "../scripts/utils";
 import ZhongguoCosmologicalLinesRings from "../components/sections/intro/ZhongguoCosmologicalLinesRings.vue";
+import GameChessBoard from "../components/sections/intro/GameChessBoard.vue";
 
 export const backgroundRandomCharacters = {
 	random: "\u01F7\u00DE\uA768\u00D8\u016E\u00C7\u01E2\uA728\u1E9E\uA7D5\u01B1\u1EB3\u1D76\u1F86\u1F23\u03DE\u046C\uA64A\u0518\uA650\u0466\u040F\uA65E\uA68E\uD83D\uDF0D\u2645\u2BE0\u2BE1\u263F\uD83D\uDF7B\u262F\u2630\u2636\u16D7\u16DF\u16C9\u2625\u269A\u2624\u2E19\u2627", // Random
@@ -500,6 +501,8 @@ export const randomCharacters = {
 	},
 	chess_knight_queen: {
 		item: "\uD83E\uDE51",
+		component: GameChessBoard,
+		componentProps: { scale: 0.72 },
 		en: {
 			title: "Knight-Queen",
 			subtitle: "[Chess@https://en.wikipedia.org/wiki/Chess]"

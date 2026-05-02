@@ -7,9 +7,9 @@ import Footer from './components/footer/Footer.vue'
 import { ref, onMounted, computed } from 'vue'
 import { getLatestRelease } from './scripts/fetchRepostiryData'
 import { formatTitle } from './scripts/utils'
-import { useDocumentMeta } from './scripts/composable'
+import { useDocumentMeta } from './scripts/composables/useDocumentMeta'
 import { useI18n } from 'vue-i18n'
-import { useWindowSize } from './scripts/useWindowSize'
+import { useWindowSize } from './scripts/composables/useWindowSize'
 
 const { t } = useI18n()
 const { windowWidth } = useWindowSize()
