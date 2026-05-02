@@ -22,9 +22,8 @@ export default {
 		other: 'more',
 		download: 'download',
 	},
-	chess: {
-		black: 'Black',
-		white: 'White',
+	games: {
+		hide_board: 'Hide board',
 		turn: 'Turn: ',
 		check: 'Check: ',
 		win: 'Checkmate! Winner: ',
@@ -33,22 +32,17 @@ export default {
 		pause: 'Pause',
 		start: 'Start',
 		start_warning: 'Start/Pause game. Calculating moves may cause lag',
-		ai_battleground: '[Green] both teams control the bot, [Red] white controls the player',
 		unicode: 'All pieces on the board are represented by Unicode characters'
+	},
+	chess: {
+		black: 'Black',
+		white: 'White',
+		ai_battleground: '[Green] both teams control the bot, [Red] white controls the player',
 	},
 	xiangqi: {
 		red: 'Red',
 		black: 'Black',
-		turn: 'Turn: ',
-		check: 'Check: ',
-		win: 'Checkmate! Winner: ',
-		stalemate: 'Stalemate! Draw',
-		draw: 'Draw',
-		pause: 'Pause',
-		start: 'Start',
-		start_warning: 'Start/Pause game. Calculating moves may cause lag',
 		ai_battleground: '[Green] both teams control the bot, [Red] red controls the player',
-		unicode: 'All pieces on the board are represented by Unicode characters'
 	},
 	features: "Windows\u00A0\\| Free & Open Source\u00A0\\| Customizable\u00A0\\| MIT\u00A0License",
 	download: "Download",

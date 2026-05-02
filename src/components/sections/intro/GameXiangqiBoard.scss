@@ -78,6 +78,15 @@
 	position: absolute;
 	top: 0px;
 	left: -36px;
+
+	@media screen and (max-width: 1050px) {
+		flex-direction: row;
+		gap: 10px;
+		left: 50%;
+		transform: translateX(-50%);
+		top: unset;
+		bottom: -46px;
+	}
 }
 
 .xiangqi-side-btn {
@@ -111,6 +120,16 @@
 
 		&.invert {
 			filter: invert(100);
+		}
+	}
+
+	@media screen and (max-width: 1050px) {
+		height: 40px;
+		width: 50px;
+		border-radius: 10px !important;
+
+		& > img {
+		object-fit: unset;
 		}
 	}
 }

@@ -3,10 +3,11 @@ import { computed, ref } from 'vue';
 import { randomCharacters, type RandomCharacter } from '../../../data/randomCharacter';
 import { randomObjectKey } from '../../../scripts/utils';
 import { locale } from '../../../i18n';
+import { urlParams } from '../../../scripts/constants';
+import { useWindowSize } from '../../../scripts/composables/useWindowSize';
 
 import Description from './Description.vue';
 import BackgroundScatteredCharacters from './BackgroundScatteredCharacters.vue';
-import { urlParams } from '../../../scripts/constants';
 import GameChessBoard from './GameChessBoard.vue';
 import GameXiangqiBoard from './GameXiangqiBoard.vue';
 
@@ -24,6 +25,9 @@ const characterEntryID = randomObjectKey(randomCharacters);
 const characterEntry = randomCharacters[characterEntryID] as RandomCharacter;
 
 const urlPlay = urlParams.get('play')?.toLowerCase();
+
+const { windowWidth } = useWindowSize()
+const isBoardVisible = ref(windowWidth.value >= 1050)
 
 function parseString(raw: string): Part[] {
     const parts: Part[] = []
@@ -51,6 +55,11 @@ function parseString(raw: string): Part[] {
 const titleParts = computed(() => parseString(characterEntry[currentLocale.value].title))
 const subtitleParts = computed(() => parseString(characterEntry[currentLocale.value].subtitle))
 
+const isBoardComponent = computed(() =>
+	characterEntry.component === GameChessBoard ||
+	characterEntry.component === GameXiangqiBoard
+)
+
 defineProps<{
 	versionedTitle: string
 }>()
@@ -62,12 +71,13 @@ defineProps<{
 	<section class="intro-section">
 		<div class="intro-section__background">
 			<div class="intro-section__background__characters">
-				<GameChessBoard v-if="urlPlay === 'chess'" :scale="0.72" />
-				<GameXiangqiBoard v-else-if="urlPlay === 'xiangqi'" :scale="0.72" />
+				<GameChessBoard v-if="urlPlay === 'chess'" :scale="0.72" v-model="isBoardVisible"/>
+				<GameXiangqiBoard v-else-if="urlPlay === 'xiangqi'" :scale="0.72" v-model="isBoardVisible" />
+				<component v-else-if="isBoardComponent && characterEntry.component" :is="characterEntry.component" v-bind="characterEntry.componentProps" :scale="0.72" v-model="isBoardVisible" />
 				<component v-else-if="characterEntry.component" :is="characterEntry.component" v-bind="characterEntry.componentProps" />
 				<BackgroundScatteredCharacters v-else :custom-characters="characterEntry.customCharacters" />
 			</div>
-			<div class="intro-section__background__gradient"></div>
+			<div class="intro-section__background__gradient" :class="{ 'z-index-2': windowWidth <= 1050 && isBoardVisible }"></div>
 		</div>
 		<div class="intro-section__content">
 			<div class="intro-section__content__random-character">
