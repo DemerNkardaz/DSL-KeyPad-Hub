@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { useChessGame } from '../../../scripts/composables/useChessGame'
 import { useI18n } from 'vue-i18n'
 import { baseUrl } from '../../../scripts/constants';
