@@ -23,6 +23,9 @@ export default {
 		download: 'download',
 	},
 	games: {
+		play: 'Play',
+		chess: 'Chess',
+		xiangqi: 'Xiàngqí',
 		hide_board: 'Hide board',
 		turn: 'Turn: ',
 		check: 'Check: ',

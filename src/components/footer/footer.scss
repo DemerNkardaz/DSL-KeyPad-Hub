@@ -1,11 +1,32 @@
 @use '@/styles/variables' as *;
 
 .content-footer {
-	font-family: 'Noo Sans', sans-serif;
+	display: flex;
+	gap: 2rem;
+	font-family: $fonts-sans;
   width: 100%;
   padding: 1rem;
   background-color: $surface-0;
   border-top: 1px solid $surface-2;
   padding-inline: 2em;
   color: $text-quaternary;
+
+	@media screen and (max-width: 900px) {
+		gap: 1rem;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+}
+
+.content-footer__game-links {
+	display: flex;
+	gap: 1rem;
+	justify-content: center;
+	align-items: center;
+	margin-inline-start: auto;
+
+	@media screen and (max-width: 900px) {
+		margin-inline-start: unset;
+	}
 }

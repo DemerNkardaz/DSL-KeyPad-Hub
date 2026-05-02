@@ -501,19 +501,6 @@ export const randomCharacters = {
 			subtitle: "[Международный фонетический алфавит@https://ru.wikipedia.org/wiki/Международный_фонетический_алфавит]"
 		}
 	},
-	chess_knight_queen: {
-		item: "\uD83E\uDE51",
-		component: GameChessBoard,
-		componentProps: { scale: 0.72 },
-		en: {
-			title: "Knight-Queen",
-			subtitle: "[Chess@https://en.wikipedia.org/wiki/Chess]"
-		},
-		ru: {
-			title: "Конь-Ферзь",
-			subtitle: "[Шахматы@https://ru.wikipedia.org/wiki/Шахматы]"
-		}
-	},
 	card_queen_of_hearts: {
 		item: "\uD83C\uDCBD",
 		en: {
@@ -534,6 +521,97 @@ export const randomCharacters = {
 		ru: {
 			title: "Трефовый кавалер",
 			subtitle: "[Игральные карты@https://ru.wikipedia.org/wiki/Игральные_карты]"
+		}
+	},
+	chess_knight_queen: {
+		item: "\uD83E\uDE51",
+		component: GameChessBoard,
+		componentProps: { scale: 0.72 },
+		en: {
+			title: "Knight-Queen",
+			subtitle: "[Chess@https://en.wikipedia.org/wiki/Chess]"
+		},
+		ru: {
+			title: "Конь-Ферзь",
+			subtitle: "[Шахматы@https://ru.wikipedia.org/wiki/Шахматы]"
+		}
+	},
+	chess_king: {
+		item: "\u265A",
+		component: GameChessBoard,
+		componentProps: { scale: 0.72 },
+		en: {
+			title: "King",
+			subtitle: "[Chess@https://en.wikipedia.org/wiki/Chess]"
+		},
+		ru: {
+			title: "Король",
+			subtitle: "[Шахматы@https://ru.wikipedia.org/wiki/Шахматы]"
+		}
+	},
+	chess_rook: {
+		item: "\u265C",
+		component: GameChessBoard,
+		componentProps: { scale: 0.72 },
+		en: {
+			title: "Rook",
+			subtitle: "[Chess@https://en.wikipedia.org/wiki/Chess]"
+		},
+		ru: {
+			title: "Ладья",
+			subtitle: "[Шахматы@https://ru.wikipedia.org/wiki/Шахматы]"
+		}
+	},
+	chess_bishop: {
+		item: "\u265D",
+		component: GameChessBoard,
+		componentProps: { scale: 0.72 },
+		en: {
+			title: "Bishop",
+			subtitle: "[Chess@https://en.wikipedia.org/wiki/Chess]"
+		},
+		ru: {
+			title: "Слон",
+			subtitle: "[Шахматы@https://ru.wikipedia.org/wiki/Шахматы]"
+		}
+	},
+	chess_queen: {
+		item: "\u265B",
+		component: GameChessBoard,
+		componentProps: { scale: 0.72 },
+		en: {
+			title: "Queen",
+			subtitle: "[Chess@https://en.wikipedia.org/wiki/Chess]"
+		},
+		ru: {
+			title: "Ферзь",
+			subtitle: "[Шахматы@https://ru.wikipedia.org/wiki/Шахматы]"
+		}
+	},
+	chess_knight: {
+		item: "\u265E",
+		component: GameChessBoard,
+		componentProps: { scale: 0.72 },
+		en: {
+			title: "Knight",
+			subtitle: "[Chess@https://en.wikipedia.org/wiki/Chess]"
+		},
+		ru: {
+			title: "Конь",
+			subtitle: "[Шахматы@https://ru.wikipedia.org/wiki/Шахматы]"
+		}
+	},
+	chess_equihopper: {
+		item: "\uD83E\uDE49",
+		component: GameChessBoard,
+		componentProps: { scale: 0.72 },
+		en: {
+			title: "Equihopper",
+			subtitle: "[Chess@https://en.wikipedia.org/wiki/Chess]"
+		},
+		ru: {
+			title: "Эквихоппер",
+			subtitle: "[Шахматы@https://ru.wikipedia.org/wiki/Шахматы]"
 		}
 	},
 	xiangqi_jiang: {
@@ -574,5 +652,31 @@ export const randomCharacters = {
 			title: "Фигура {Сян|相 [xiàng]} (Министр)",
 			subtitle: "[Сянци@https://ru.wikipedia.org/wiki/Сянци]"
 		}
-	}
+	},
+	xiangqi_shi_1: {
+		item: "\uD83E\uDE61",
+		component: GameXiangqiBoard,
+		componentProps: { scale: 0.72 },
+		en: {
+			title: "Piece {Shì|仕 [shì]} (Advisor)",
+			subtitle: "[Xiàngqí@https://en.wikipedia.org/wiki/Xiangqi]"
+		},
+		ru: {
+			title: "Фигура {Ши|仕 [shì]} (Советник)",
+			subtitle: "[Сянци@https://ru.wikipedia.org/wiki/Сянци]"
+		}
+	},
+	xiangqi_shi_2: {
+		item: "\uD83E\uDE68",
+		component: GameXiangqiBoard,
+		componentProps: { scale: 0.72 },
+		en: {
+			title: "Piece {Shì|士 [shì]} (Advisor)",
+			subtitle: "[Xiàngqí@https://en.wikipedia.org/wiki/Xiangqi]"
+		},
+		ru: {
+			title: "Фигура {Ши|士 [shì]} (Советник)",
+			subtitle: "[Сянци@https://ru.wikipedia.org/wiki/Сянци]"
+		}
+	},
 } satisfies RandomCharacters

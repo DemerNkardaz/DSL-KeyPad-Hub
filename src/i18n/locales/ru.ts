@@ -23,6 +23,9 @@ export default {
 		download: 'скачать',
 	},
 	games: {
+		play: 'Играть',
+		chess: 'Шахматы',
+		xiangqi: 'Сянци',
 		hide_board: 'Скрыть доску',
 		turn: 'Ход: ',
 		check: 'Шах: ',
