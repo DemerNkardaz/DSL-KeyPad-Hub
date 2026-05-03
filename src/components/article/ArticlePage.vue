@@ -5,22 +5,20 @@ import ArticleNavigation from './ArticleNavigation.vue';
 
 defineProps<{
   title: string
-  description?: string
+	description?: string
+	item?: {
+		href: string
+		label: string
+	}[]
 }>()
 
-
-const items = [
-  { href: '#intro', label: 'Intro' },
-  { href: '#install', label: 'Installation' },
-  { href: '#usage', label: 'Usage' }
-]
 </script>
 
 <template>
 	<div>
 		<article class="article">
 			<ArticleHeader :title="title" :description="description" />
-			<ArticleNavigation :items="items" />
+			<ArticleNavigation v-if="item" :items="item" />
 			<ArticleBody>
 				<slot />
 			</ArticleBody>

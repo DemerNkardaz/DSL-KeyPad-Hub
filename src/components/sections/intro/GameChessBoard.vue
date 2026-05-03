@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useChessGame } from '../../../scripts/composables/useChessGame'
+import { useChessGame } from '@/scripts/composables/useChessGame'
 import { useI18n } from 'vue-i18n'
-import { baseUrl } from '../../../scripts/constants';
-import { useWindowSize } from '../../../scripts/composables/useWindowSize';
-import Button from '../../ui/Button.vue'
+import { baseUrl } from '@/scripts/constants';
+import { useWindowSize } from '@/scripts/composables/useWindowSize';
+import Button from '@/components/ui/Button.vue'
 
 const { t } = useI18n()
 const { windowWidth } = useWindowSize()

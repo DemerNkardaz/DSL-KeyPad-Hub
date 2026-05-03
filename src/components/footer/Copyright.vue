@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { i18n } from '../../i18n';
+import { i18n } from '@/i18n';
 
 const locale = i18n.global.locale.value
 

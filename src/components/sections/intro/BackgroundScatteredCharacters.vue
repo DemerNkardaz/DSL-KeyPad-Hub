@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue';
-import { useScatteredCharacters } from '../../../scripts/composables/useScatteredCharacters';
+import { useScatteredCharacters } from '@/scripts/composables/useScatteredCharacters';
 import { toRef } from 'vue'
 
 const props = defineProps<{

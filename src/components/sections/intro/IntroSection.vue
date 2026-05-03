@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { randomCharacters, type RandomCharacter } from '../../../data/randomCharacter';
-import { randomObjectKey } from '../../../scripts/utils';
-import { locale } from '../../../i18n';
-import { urlParams } from '../../../scripts/constants';
-import { useWindowSize } from '../../../scripts/composables/useWindowSize';
+import { randomCharacters, type RandomCharacter } from '@/data/randomCharacter';
+import { randomObjectKey } from '@/scripts/utils';
+import { locale } from '@/i18n';
+import { urlParams } from '@/scripts/constants';
+import { useWindowSize } from '@/scripts/composables/useWindowSize';
 
 import Description from './Description.vue';
 import BackgroundScatteredCharacters from './BackgroundScatteredCharacters.vue';

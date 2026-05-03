@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-import { baseUrl } from '../../scripts/constants';
+import { baseUrl } from '@/scripts/constants';
 import Copyright from './Copyright.vue'
 
 const { t } = useI18n()

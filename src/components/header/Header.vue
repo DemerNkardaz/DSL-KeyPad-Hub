@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { baseUrl, isWindows } from '../../scripts/constants';
-import { getDownloadUrl } from '../../scripts/utils';
-import Button from '../ui/Button.vue';
+import { baseUrl, isWindows } from '@/scripts/constants';
+import { getDownloadUrl } from '@/scripts/utils';
+import Button from '@/components/ui/Button.vue';
 
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()

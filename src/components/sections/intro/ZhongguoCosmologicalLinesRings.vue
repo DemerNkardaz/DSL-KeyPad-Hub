@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch, nextTick } from 'vue'
-import { useWindowSize } from '../../../scripts/composables/useWindowSize'
+import { useWindowSize } from '@/scripts/composables/useWindowSize'
 
 type MobileFontSize = Record<number, number>
 
