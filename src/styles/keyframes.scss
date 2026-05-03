@@ -1,0 +1,16 @@
+@keyframes pulse-attack {
+	0% {
+		border-color: var(--accent-red);
+		box-shadow: inset 0 0 6px 2px var(--accent-red);
+	}
+
+	50% {
+		border-color: transparent;
+		box-shadow: inset 0 0 6px 2px transparent;
+	}
+
+	100% {
+		border-color: var(--accent-red);
+		box-shadow: inset 0 0 6px 2px var(--accent-red);
+	}
+}

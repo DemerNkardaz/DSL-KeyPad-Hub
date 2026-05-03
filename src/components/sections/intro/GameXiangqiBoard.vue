@@ -179,7 +179,7 @@ const turnPieceClass = computed(() =>
 			<!-- Анимация хода -->
 			<div
 				v-if="animatedMove"
-				class="xiangqi-move-animation"
+				class="xiangqi-move-animation xiangqi-piece-animation"
 				:style="{
 					...animatedMoveStyle,
 					width:  `${CELL_SIZE * s}px`,
@@ -187,7 +187,7 @@ const turnPieceClass = computed(() =>
 				}"
 			>
 				<div
-					class="xiangqi-piece-wrapper xiangqi-piece-animation"
+					class="xiangqi-piece-wrapper"
 					:class="`xiangqi-piece-wrapper-${animatedMove.piece.color === 'r' ? 'red' : 'black'}`"
 				>
 					<span

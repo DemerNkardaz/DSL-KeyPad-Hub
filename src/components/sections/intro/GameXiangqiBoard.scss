@@ -17,11 +17,11 @@
 	padding: 20px;
 	background: $surface-0;
 	border: 1px solid $surface-1;
-	color: var(--text-light);
+	color: $text-main;
 	border-radius: 15px;
 	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 	z-index: 10;
-	font-family: var(--fonts-game);
+	font-family: $fonts-game;
 }
 
 .xiangqi-info-container {
@@ -97,7 +97,7 @@
 	width: 32px;
 	height: 32px;
 	border-radius: 50%;
-	color: var(--text-gray);
+	color: $text-quinary;
 	padding: 5px;
 	background-color: $surface-2;
 	border: 1px solid $surface-1;
@@ -362,10 +362,20 @@
 
 .xiangqi-move-animation {
 	position: absolute;
-	top: 0;
-	left: 0;
 	pointer-events: none;
 	z-index: 2;
+
+	& .xiangqi-piece-wrapper {
+		position: relative;
+		width: 70%;
+		height: 70%;
+		top: unset;
+		left: unset;
+	}
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .xiangqi-piece-animation {
@@ -374,9 +384,10 @@
 
 @keyframes xiangqi-piece-move {
 	from {
-		transform: translate(-50%, -50%);
+		transform: translate(0, 0);
 	}
+
 	to {
-		transform: translate(calc(var(--dx) - 50%), calc(var(--dy) - 50%));
+		transform: translate(var(--dx), var(--dy));
 	}
 }

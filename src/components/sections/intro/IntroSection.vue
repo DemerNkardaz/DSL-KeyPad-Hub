@@ -56,8 +56,8 @@ const titleParts = computed(() => parseString(characterEntry[currentLocale.value
 const subtitleParts = computed(() => parseString(characterEntry[currentLocale.value].subtitle))
 
 const isBoardComponent = computed(() =>
-	characterEntry.component === GameChessBoard ||
-	characterEntry.component === GameXiangqiBoard
+	characterEntry.component?.item === GameChessBoard ||
+	characterEntry.component?.item === GameXiangqiBoard
 )
 
 defineProps<{
@@ -65,7 +65,7 @@ defineProps<{
 }>()
 </script>
 
-<style lang="scss" src="./intro-section.scss" />
+<style lang="scss" src="./IntroSection.scss" />
 
 <template>
 	<section class="intro-section">
@@ -73,8 +73,8 @@ defineProps<{
 			<div class="intro-section__background__characters">
 				<GameChessBoard v-if="urlPlay === 'chess'" :scale="0.72" v-model="isBoardVisible"/>
 				<GameXiangqiBoard v-else-if="urlPlay === 'xiangqi'" :scale="0.72" v-model="isBoardVisible" />
-				<component v-else-if="isBoardComponent && characterEntry.component" :is="characterEntry.component" v-bind="characterEntry.componentProps" :scale="0.72" v-model="isBoardVisible" />
-				<component v-else-if="characterEntry.component" :is="characterEntry.component" v-bind="characterEntry.componentProps" />
+				<component v-else-if="isBoardComponent && characterEntry.component" :is="characterEntry.component.item" v-bind="characterEntry.component.props" :scale="0.72" v-model="isBoardVisible" />
+				<component v-else-if="characterEntry.component" :is="characterEntry.component.item" v-bind="characterEntry.component.props" />
 				<BackgroundScatteredCharacters v-else :custom-characters="characterEntry.customCharacters" />
 			</div>
 			<div class="intro-section__background__gradient" :class="{ 'z-index-2': windowWidth <= 1050 && isBoardVisible }"></div>

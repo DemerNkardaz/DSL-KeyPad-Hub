@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch, nextTick } from 'vue'
+import { useWindowSize } from '../../../scripts/composables/useWindowSize'
 
 type MobileFontSize = Record<number, number>
 
@@ -38,18 +39,22 @@ const centerY = containerSize / 2
 
 const ringRefs = ref<HTMLElement[]>([])
 
+const { windowWidth } = useWindowSize()
+
 const resolvedFontSize = computed(() => {
   const [, baseFontSize, mobileFontSize] = props.arguments
   if (!mobileFontSize) return baseFontSize
 
-  const screenWidth = typeof window !== 'undefined' ? window.innerWidth : 1000
+  const screenWidth = windowWidth.value
   const breakpoints = Object.keys(mobileFontSize).map(Number).sort((a, b) => b - a)
 
+  let fontSize = baseFontSize
   for (const breakpoint of breakpoints) {
-    if (screenWidth <= breakpoint) return mobileFontSize[breakpoint]
+    if (screenWidth <= breakpoint) {
+      fontSize = mobileFontSize[breakpoint]
+    }
   }
-
-  return baseFontSize
+  return fontSize
 })
 
 function parseSymbols(ring: string): ParsedSymbol[] {
@@ -75,7 +80,7 @@ const computedRings = computed<Ring[]>(() => {
   const [rings, , , baseRadiusProp = 0.75] = props.arguments
   const fontSize = resolvedFontSize.value
 
-  let baseRadius = fontSize * baseRadiusProp
+  const baseRadius = fontSize * baseRadiusProp
   const radiusStep = fontSize * 0.55
 
   const firstRingSymbols = parseSymbols(rings[0])

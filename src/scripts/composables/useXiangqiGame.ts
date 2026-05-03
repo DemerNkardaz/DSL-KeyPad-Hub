@@ -351,9 +351,12 @@ export function useXiangqiGame(options: XiangqiOptions = {}) {
 
     map.set(square, blackAttacked.has(square) ? 'selected-under-attack' : 'selected')
 
-    const possibleMoves = game.value.moves({ square, verbose: true }) as XiangqiMoveVerbose[]
-    for (const move of possibleMoves) {
-      const target = move.to
+    // Библиотека xiangqi.min.js возвращает строки вида "e9e8" даже при verbose: true,
+    // поэтому парсим вручную: first 2 chars = from, last 2 chars = to
+    const rawMoves = game.value.moves({ square }) as string[]
+    const destinations = rawMoves.map(m => m.slice(-2))
+
+    for (const target of destinations) {
       const targetPiece = game.value.get(target)
       const isAttack = !!targetPiece && targetPiece.color === 'b'
       const isHazardous = blackAttacked.has(target)

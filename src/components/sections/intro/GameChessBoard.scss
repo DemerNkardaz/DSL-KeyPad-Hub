@@ -249,7 +249,7 @@
 	align-items: center;
 	justify-content: center;
 	font-size: 40px;
-	transition: background-color 0.3s;
+	transition: all 0.2s;
 }
 
 .chess-cell-light {
@@ -261,8 +261,8 @@
 }
 
 .chess-cell-highlight {
-	border: 1px solid $accent-0 !important;
-	box-shadow: inset 0 0 5px 1px $accent-0 !important;
+	border: 1px solid var(--accent-gold) !important;
+	box-shadow: inset 0 0 5px 1px var(--accent-gold) !important;
 }
 
 .chess-cell-selected {
@@ -273,23 +273,6 @@
 .chess-cell-selected-under-attack,
 .chess-cell-attacker-of-selected {
 	animation: pulse-attack 1.5s infinite ease-in-out;
-}
-
-@keyframes pulse-attack {
-	0% {
-		border-color: var(--accent-red);
-		box-shadow: inset 0 0 6px 2px var(--accent-red);
-	}
-
-	50% {
-		border-color: transparent;
-		box-shadow: inset 0 0 6px 2px transparent;
-	}
-
-	100% {
-		border-color: var(--accent-red);
-		box-shadow: inset 0 0 6px 2px var(--accent-red);
-	}
 }
 
 .chess-cell-attackable {
