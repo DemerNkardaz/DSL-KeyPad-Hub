@@ -10,8 +10,4 @@ export const articlesMeta = Object.entries(allModules).reduce((acc, [path, modul
 
 export const articlesRegistry = [
 	'getting-started',
-	'getting-started',
-	'getting-started',
-	'getting-started',
-	'getting-started',
 ]

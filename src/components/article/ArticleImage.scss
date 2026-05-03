@@ -1,0 +1,49 @@
+.article-image {
+	display: inline-flex;
+	flex-direction: column;
+	gap: 0.375rem;
+	margin: 0.75rem 0;
+
+	&--float-left {
+		float: left;
+		margin: 0.25rem 1.25rem 0.75rem 0;
+	}
+
+	&--float-right {
+		float: right;
+		margin: 0.25rem 0 0.75rem 1.25rem;
+	}
+
+	&--align-left {
+		display: flex;
+		margin-inline-end: auto;
+	}
+
+	&--align-center {
+		display: flex;
+		margin-inline: auto;
+	}
+
+	&--align-right {
+		display: flex;
+		margin-inline-start: auto;
+	}
+
+	&__img {
+		width: 100%;
+		height: auto;
+		border-radius: 6px;
+		display: block;
+	}
+
+	&__caption {
+		font-size: 0.8rem;
+		color: $text-secondary;
+		font-style: italic;
+		text-align: center;
+	}
+
+	&--clickable {
+	cursor: zoom-in;
+	}
+}

@@ -4,8 +4,6 @@ import remarkFrontmatter from 'remark-frontmatter'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 import remarkGfm from 'remark-gfm'
 import remarkExtractToc from 'remark-extract-toc'
-import remarkReadingTime from 'remark-reading-time'
-import { remarkReadingTimeExport } from './remarkReadingTimeExport'
 import rehypeExternalLinks from 'rehype-external-links'
 import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeSlug from 'rehype-slug'
@@ -14,6 +12,10 @@ import mdx from '@mdx-js/rollup'
 import svgLoader from 'vite-svg-loader'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import vue from '@vitejs/plugin-vue'
+
+import remarkReadingTime from 'remark-reading-time'
+import { remarkReadingTimeExport } from './remarkReadingTimeExport'
+import { remarkTypography } from './remarkTypography'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -27,6 +29,7 @@ export default defineConfig({
 				[remarkExtractToc, { name: 'toc', keys: ['value', 'depth', 'data'] }],
 				remarkReadingTime,
 				remarkReadingTimeExport,
+				remarkTypography,
 			],
 			rehypePlugins: [
 				rehypeSlug,

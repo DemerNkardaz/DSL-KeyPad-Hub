@@ -58,3 +58,10 @@ export function randomItem<T>(...items: { item: T; chance?: number }[]): T {
 
   return normalized[normalized.length - 1].item
 }
+
+export function resolveImage(image: string | undefined, lang: string, finisher?: string): string | undefined {
+	if (!image) return undefined
+	const hasExtension = /\.[a-z]+$/i.test(image)
+	const filename = hasExtension ? image : `${image}_${finisher || 'thumb'}.avif`
+	return `${baseUrl}images/articles/${lang}/${filename}`
+}

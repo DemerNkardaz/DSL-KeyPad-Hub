@@ -1,21 +1,13 @@
 <script setup lang="ts">
 import { articlesRegistry, articlesMeta } from '@/content/articles'
 import { locale } from '@/i18n'
-import { baseUrl } from '@/scripts/constants'
+import { resolveImage } from '@/scripts/utils'
 import { inject, ref, computed } from 'vue'
-
-function resolveImage(image: string | undefined, lang: string): string | undefined {
-	if (!image) return undefined
-	const hasExtension = /\.[a-z]+$/i.test(image)
-	const filename = hasExtension ? image : `${image}_thumb.avif`
-	return `${baseUrl}images/articles/${lang}/${filename}`
-}
 
 const state = inject<{ activeArticle: string | null }>('activeArticle')!
 const isCompact = computed(() => !!state.activeArticle)
 
 const listEl = ref<HTMLElement>()
-
 function scroll(dir: 'left' | 'right') {
 	if (!listEl.value) return
 	listEl.value.scrollBy({ left: dir === 'right' ? 300 : -300, behavior: 'smooth' })
