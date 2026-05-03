@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { provide, reactive, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import Button from '@/components/ui/Button.vue'
 
 const { t } = useI18n()
-
 const state = reactive({
 	activeSection: null as string | null,
 	sections: [] as { id: string, label: string }[]
@@ -47,7 +47,9 @@ const displayTime = computed(() => {
 					<nav class="article-nav" v-if="state.sections.length">
 						<ul class="article-nav__list">
 							<li class="article-nav__item" v-for="item in state.sections" :key="item.id">
-								<button class="btn article-nav__item__button" :class="{ 'article-nav__item__button--active': item.id === state.activeSection }" @click="state.activeSection = item.id">{{ item.label }}</button>
+								<Button variant="action" class="article-nav__item__button" :class="{ 'article-nav__item__button--active': item.id === state.activeSection }" @click="state.activeSection = item.id">
+									{{ item.label }}
+								</Button>
 							</li>
 						</ul>
 					</nav>
