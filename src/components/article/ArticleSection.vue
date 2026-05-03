@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { inject, onMounted, onUnmounted, computed, ref, watch } from 'vue'
+import { inject, onMounted, onUnmounted, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
-
-const sectionEl = ref<HTMLElement>()
 
 const props = defineProps<{ title: string, id?: string }>()
 

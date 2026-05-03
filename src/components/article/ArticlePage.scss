@@ -39,10 +39,6 @@
 				fill: currentColor !important;
 				stroke: currentColor !important;
 			}
-			:deep(path) {
-				fill: currentColor !important;
-				stroke: currentColor !important;
-			}
 			width: 1em;
 			height: 1em;
 		}
@@ -72,10 +68,6 @@
 			height: 1em;
 
 			& path {
-				fill: currentColor !important;
-				stroke: currentColor !important;
-			}
-			:deep(path) {
 				fill: currentColor !important;
 				stroke: currentColor !important;
 			}
