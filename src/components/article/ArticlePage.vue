@@ -27,37 +27,35 @@ const displayTime = computed(() => {
 })
 </script>
 
-<style lang="scss" src="./article.scss" />
+<style lang="scss" src="./ArticlePage.scss" />
 
 <template>
-	<div>
-		<article class="article-container">
-			<header class="article-header">
-				<div class="article-header__title">
-					<h2 class="article-header__title-text">{{ title }}</h2>
-					<div class="article-header__time" v-if="displayTime">
-						<TimeIcon class="article-header__time-icon" />
-						<span class="article-header__time-value">{{ displayTime.value }}&nbsp;{{ t(`articles.${displayTime.unit}`) }}</span>
-					</div>
+	<article class="article-container">
+		<header class="article-header">
+			<div class="article-header__title">
+				<h2 class="article-header__title-text">{{ title }}</h2>
+				<div class="article-header__time" v-if="displayTime">
+					<TimeIcon class="article-header__time-icon" />
+					<span class="article-header__time-value">{{ displayTime.value }}&nbsp;{{ t(`articles.${displayTime.unit}`) }}</span>
 				</div>
-				<p class="article-header__description" v-if="description">{{ description }}</p>
-			</header>
-			<div class="article-content">
-				<div class="article-sidebar" v-if="state.sections.length">
-					<nav class="article-nav" v-if="state.sections.length">
-						<ul class="article-nav__list">
-							<li class="article-nav__item" v-for="item in state.sections" :key="item.id">
-								<Button variant="action" class="article-nav__item__button" :class="{ 'article-nav__item__button--active': item.id === state.activeSection }" @click="state.activeSection = item.id">
-									{{ item.label }}
-								</Button>
-							</li>
-						</ul>
-					</nav>
-				</div>
-				<main class="article-body">
-					<slot />
-				</main>
 			</div>
-		</article>
-	</div>
+			<p class="article-header__description" v-if="description">{{ description }}</p>
+		</header>
+		<div class="article-content">
+			<div class="article-sidebar" v-if="state.sections.length">
+				<nav class="article-nav" v-if="state.sections.length">
+					<ul class="article-nav__list">
+						<li class="article-nav__item" v-for="item in state.sections" :key="item.id">
+							<Button variant="action" class="article-nav__item__button" :class="{ 'article-nav__item__button--active': item.id === state.activeSection }" @click="state.activeSection = item.id">
+								{{ item.label }}
+							</Button>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<main class="article-body">
+				<slot />
+			</main>
+		</div>
+	</article>
 </template>

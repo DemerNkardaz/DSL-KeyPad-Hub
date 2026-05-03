@@ -10,7 +10,7 @@ import { formatTitle } from './scripts/utils'
 import { useDocumentMeta } from './scripts/composables/useDocumentMeta'
 import { useI18n } from 'vue-i18n'
 import { useWindowSize } from './scripts/composables/useWindowSize'
-import ArticlePage from './components/article/ArticlePage.vue'
+// import ArticlePage from './components/article/ArticlePage.vue'
 
 const { t } = useI18n()
 const { windowWidth } = useWindowSize()
@@ -34,17 +34,17 @@ const formattedTitle = computed(() => {
   }
   return 'DSL KeyPad'
 })
-import TestArticle, { frontmatter, readingTime } from '@/content/articles/test/ru.mdx'
+// import TestArticle, { frontmatter, readingTime } from '@/content/articles/test/ru.mdx'
 </script>
 <style lang="scss" scoped>
 </style>
 <template>
 	<Header :version="latestRelease?.tag_name ?? 'fetching...'" :window-width="windowWidth" />
 	<IntroSection :versioned-title="formattedTitle" />
-	<Main>
-		<ArticlePage :title="(frontmatter.title as string)" :description="(frontmatter.description as string)" :reading-time="readingTime">
+	<Main />
+		<!-- <ArticlePage :title="(frontmatter.title as string)" :description="(frontmatter.description as string)" :reading-time="readingTime">
 			<TestArticle />
-		</ArticlePage>
-	</Main>
+		</ArticlePage> -->
+	<!-- </Main> -->
 	<Footer />
 </template>
