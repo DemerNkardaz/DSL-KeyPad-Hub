@@ -40,6 +40,9 @@ const displayTime = computed(() => {
 				</div>
 			</div>
 			<p class="article-header__description" v-if="description">{{ description }}</p>
+			<button class="article-header__close-button" @click="$emit('close')" :title="t('articles.close')">
+				<CloseIcon />
+			</button>
 		</header>
 		<div class="article-content">
 			<div class="article-sidebar" v-if="state.sections.length">

@@ -26,6 +26,7 @@ export default {
 		id_section: 'секция',
 		seconds: 'сек.',
 		minutes: 'мин.',
+		close: 'Закрыть статью',
 	},
 	games: {
 		play: 'Играть',

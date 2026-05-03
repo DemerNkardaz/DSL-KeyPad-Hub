@@ -26,6 +26,7 @@ export default {
 		id_section: 'section',
 		seconds: 'sec.',
 		minutes: 'min.',
+		close: 'Close article',
 	},
 	games: {
 		play: 'Play',

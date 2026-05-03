@@ -7,6 +7,7 @@
 }
 
 .article-header {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
@@ -44,6 +45,40 @@
 			}
 			width: 1em;
 			height: 1em;
+		}
+	}
+
+	&__close-button {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: none;
+		border: none;
+		color: $text-quaternary;
+		cursor: pointer;
+		border: 1px solid $surface-2;
+		border-radius: 50%;
+		padding: 0.25rem;
+
+		&:hover {
+			color: $text-main;
+		}
+
+		& svg {
+			width: 1em;
+			height: 1em;
+
+			& path {
+				fill: currentColor !important;
+				stroke: currentColor !important;
+			}
+			:deep(path) {
+				fill: currentColor !important;
+				stroke: currentColor !important;
+			}
 		}
 	}
 }
@@ -99,7 +134,7 @@
 				}
 
 				&--active {
-					background: $accent-0;
+					background: $surface-5;
 					color: $surface-0;
 
 					&:hover {
