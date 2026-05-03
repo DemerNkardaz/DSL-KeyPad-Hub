@@ -41,6 +41,7 @@
 	border-radius: 2.5px;
 	line-height: 1;
 	transition: all 150ms ease;
+	color: $text-main;
 
 	overflow: hidden;
 	z-index: 1;
@@ -107,14 +108,21 @@
 		border-color: $surface-1;
 	}
 
-	&>img {
-		width: 100%;
-		height: 100%;
+	& > img, & > svg {
+		width: 110%;
+		height: 110%;
 		object-fit: cover;
 		object-position: center;
 
 		&.invert {
 			filter: invert(100);
+		}
+
+		&:not(.immutable) {
+			& path, & rect, & polygon, & circle, & ellipse, & line, & polyline, & g {
+				fill: currentColor !important;
+				stroke: currentColor !important;
+			}
 		}
 	}
 

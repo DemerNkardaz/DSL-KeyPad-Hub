@@ -6,9 +6,31 @@ import App from './App.vue'
 import { i18n } from './i18n'
 import { MDXProvider } from '@mdx-js/vue'
 
+// Регистрируем глобальные компоненты для иконок
+import ReloadIcon from '@/assets/images/flat_icons/flat_reload.svg'
+import StartIcon from '@/assets/images/flat_icons/flat_start.svg'
+import PauseIcon from '@/assets/images/flat_icons/flat_pause.svg'
+import RobotIcon from '@/assets/images/flat_icons/flat_robot.svg'
+import VisibilityIcon from '@/assets/images/flat_icons/flat_visibility_2.svg'
+import UnicodeLogo from '@/assets/images/flat_icons/unicode_logo.svg'
+import TimeIcon from '@/assets/images/flat_icons/flat_time.svg'
+// --- END ---
+
 const app = createApp(App)
 
 app.use(i18n)
+
+// Регистрация глобальных компонентов для иконок
+app.component('ReloadIcon', ReloadIcon)
+app.component('StartIcon', StartIcon)
+app.component('PauseIcon', PauseIcon)
+app.component('RobotIcon', RobotIcon)
+app.component('VisibilityIcon', VisibilityIcon)
+app.component('UnicodeLogo', UnicodeLogo)
+app.component('TimeIcon', TimeIcon)
+// --- END ---
+
+// Регистрация глобального компонента для MDXProvider
 app.component('MdxVueProvider', MDXProvider)
 
 app.mount('#app')

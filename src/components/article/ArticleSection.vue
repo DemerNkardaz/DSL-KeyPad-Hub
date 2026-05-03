@@ -20,7 +20,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-	<section :id="sectionId" class="article-section">
+	<section :id="sectionId" class="article-body__section">
 		<h3 v-if="title" :id="sectionId">{{ title }}</h3>
 		<div>
 			<slot />

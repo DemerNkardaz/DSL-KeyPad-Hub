@@ -6,3 +6,9 @@ declare module '*.mdx' {
 	export const toc: Record<string, unknown>
   export const readingTime: number
 }
+
+declare module '*.svg' {
+  import { DefineComponent } from 'vue'
+  const component: DefineComponent
+  export default component
+}

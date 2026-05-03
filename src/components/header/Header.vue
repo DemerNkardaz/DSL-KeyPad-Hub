@@ -3,6 +3,8 @@ import { baseUrl, isWindows } from '@/scripts/constants';
 import { getDownloadUrl } from '@/scripts/utils';
 import Button from '@/components/ui/Button.vue';
 
+import UpdateIcon from '@/assets/images/flat_icons/flat_update.svg'
+
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 

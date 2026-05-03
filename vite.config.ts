@@ -11,6 +11,7 @@ import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import mdx from '@mdx-js/rollup'
+import svgLoader from 'vite-svg-loader'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import vue from '@vitejs/plugin-vue'
 
@@ -36,6 +37,7 @@ export default defineConfig({
 		}), },
 		vue(),
 		vueJsx(),
+		svgLoader(),
 	],
 	base: '/DSL-KeyPad-Docs/',
 	server: {

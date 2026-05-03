@@ -2,9 +2,9 @@
 import { computed } from 'vue'
 import { useChessGame } from '@/scripts/composables/useChessGame'
 import { useI18n } from 'vue-i18n'
-import { baseUrl } from '@/scripts/constants';
 import { useWindowSize } from '@/scripts/composables/useWindowSize';
 import Button from '@/components/ui/Button.vue'
+
 
 const { t } = useI18n()
 const { windowWidth } = useWindowSize()
@@ -194,24 +194,25 @@ function boardClass(): string[] {
 		<!-- Кнопки -->
 		<div class="chess-side-buttons-container">
 			<button class="chess-btn chess-side-btn" @click="reset">
-				<img class="invert" src="/images/flat_icons/flat_reload.svg" />
+				<ReloadIcon />
 			</button>
 
 			<button class="chess-btn chess-side-btn" :title="t('games.start_warning')" @click="togglePause">
-				<img class="invert" :src="baseUrl + (isPaused ? 'images/flat_icons/flat_start.svg' : 'images/flat_icons/flat_pause.svg')"/>
+				<StartIcon v-if="isPaused" />
+				<PauseIcon v-else />
 			</button>
 
 			<button class="chess-btn chess-side-btn" :class="aiEnabled ? 'chess-side-btn-allowed' : 'chess-side-btn-restricted'" :title="t('chess.ai_battleground')" @click="toggleAI">
-				<img class="invert" src="/images/flat_icons/flat_robot.svg" />
+				<RobotIcon />
 			</button>
 
 			<a class="chess-btn chess-side-btn chess-side-btn-squared" href="https://home.unicode.org" target="_blank" :title="t('games.unicode')">
-				<img src="/images/flat_icons/unicode_logo.svg" />
+				<UnicodeLogo class="immutable" />
 			</a>
 
 			<!-- Скрытие доски -->
 			<button v-if="windowWidth <= 1050" class="xiangqi-btn xiangqi-side-btn transition-layer"@click="isBoardVisible = false" :title="t('games.hide_board')">
-				<img class="invert" src="/images/flat_icons/flat_visibility_2.svg" />
+				<VisibilityIcon />
 			</button>
 		</div>
 

@@ -83,6 +83,22 @@
 	cursor: help;
 }
 
+.invert {
+	filter: invert(100);
+
+	&-25 {
+		filter: invert(25%);
+	}
+
+	&-50 {
+		filter: invert(50%);
+	}
+
+	&-75 {
+		filter: invert(75%);
+	}
+}
+
 .flex-container {
 	display: inline-flex;
 	align-items: center;
