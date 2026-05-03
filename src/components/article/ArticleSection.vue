@@ -22,6 +22,7 @@ onUnmounted(() => {
 <template>
 	<section :id="sectionId" class="article-body__section">
 		<h3 v-if="title" :id="sectionId">{{ title }}</h3>
+		<hr>
 		<div>
 			<slot />
 		</div>

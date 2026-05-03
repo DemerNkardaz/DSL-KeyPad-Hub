@@ -47,7 +47,7 @@ const displayTime = computed(() => {
 					<nav class="article-nav" v-if="state.sections.length">
 						<ul class="article-nav__list">
 							<li class="article-nav__item" v-for="item in state.sections" :key="item.id">
-								<button class="article-nav__item__button" :class="{ 'article-nav__item__button--active': item.id === state.activeSection }" @click="state.activeSection = item.id">{{ item.label }}</button>
+								<button class="btn article-nav__item__button" :class="{ 'article-nav__item__button--active': item.id === state.activeSection }" @click="state.activeSection = item.id">{{ item.label }}</button>
 							</li>
 						</ul>
 					</nav>
