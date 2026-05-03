@@ -22,6 +22,11 @@ export default {
 		other: 'more',
 		download: 'download',
 	},
+	articles: {
+		id_section: 'section',
+		seconds: 'sec.',
+		minutes: 'min.',
+	},
 	games: {
 		play: 'Play',
 		chess: 'Chess',

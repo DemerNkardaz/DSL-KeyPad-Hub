@@ -22,6 +22,11 @@ export default {
 		other: 'другое',
 		download: 'скачать',
 	},
+	articles: {
+		id_section: 'секция',
+		seconds: 'сек.',
+		minutes: 'мин.',
+	},
 	games: {
 		play: 'Играть',
 		chess: 'Шахматы',

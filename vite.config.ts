@@ -2,6 +2,14 @@ import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
+import remarkGfm from 'remark-gfm'
+import remarkExtractToc from 'remark-extract-toc'
+import remarkReadingTime from 'remark-reading-time'
+import { remarkReadingTimeExport } from './remarkReadingTimeExport'
+import rehypeExternalLinks from 'rehype-external-links'
+import rehypePrettyCode from 'rehype-pretty-code'
+import rehypeSlug from 'rehype-slug'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import mdx from '@mdx-js/rollup'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import vue from '@vitejs/plugin-vue'
@@ -14,6 +22,16 @@ export default defineConfig({
 			remarkPlugins: [
 				remarkFrontmatter,
 				[remarkMdxFrontmatter, { name: 'frontmatter' }],
+				remarkGfm,
+				[remarkExtractToc, { name: 'toc', keys: ['value', 'depth', 'data'] }],
+				remarkReadingTime,
+				remarkReadingTimeExport,
+			],
+			rehypePlugins: [
+				rehypeSlug,
+				rehypeAutolinkHeadings,
+				[rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }],
+				rehypePrettyCode,
 			]
 		}), },
 		vue(),
@@ -23,11 +41,11 @@ export default defineConfig({
 	server: {
 		open: true
 	},
-	resolve: {
-		alias: {
-			'@': fileURLToPath(new URL('./src', import.meta.url))
-		}
-	},
+		resolve: {
+			alias: {
+				'@': fileURLToPath(new URL('./src', import.meta.url))
+			}
+		},
 	css: {
 		preprocessorOptions: {
 			scss: {

@@ -8,6 +8,8 @@ const { t } = useI18n()
 <template>
 	<main class="content-main">
 		<div class="content-main__features">{{ t('features') }}</div>
-		<slot />
+		<div class="content-main__content">
+			<slot />
+		</div>
 	</main>
 </template>
