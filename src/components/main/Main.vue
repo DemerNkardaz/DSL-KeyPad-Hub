@@ -35,7 +35,7 @@ const readingTime = computed(() => articleModule.value?.readingTime)
     <div class="content-main__features">{{ t('features') }}</div>
     <div class="content-main__content">
       <ArticleList />
-      <ArticlePage v-if="ArticleComponent && frontmatter" :title="frontmatter.title" :description="frontmatter.description" :reading-time="readingTime" @close="state.activeArticle = null">
+      <ArticlePage v-if="ArticleComponent && frontmatter" :title="frontmatter.title" :description="frontmatter.longDescription || frontmatter.description" :reading-time="readingTime" @close="state.activeArticle = null">
         <component :is="ArticleComponent" />
       </ArticlePage>
       <slot />
