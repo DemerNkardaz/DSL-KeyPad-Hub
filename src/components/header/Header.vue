@@ -3,9 +3,8 @@ import { baseUrl, isWindows } from '@/scripts/constants';
 import { getDownloadUrl } from '@/scripts/utils';
 import Button from '@/components/ui/Button.vue';
 
-import UpdateIcon from '@/assets/images/flat_icons/flat_update.svg'
-
 import { useI18n } from 'vue-i18n'
+import { resolveComponent } from 'vue';
 const { t } = useI18n()
 
 defineProps<{
@@ -35,7 +34,7 @@ defineProps<{
 			</a>
 		</div>
 		<div v-if="isWindows" class="content-header__buttons">
-			<Button variant="download" :href="getDownloadUrl(version)" :icon="{ src: '/images/flat_icons/flat_update.svg', alt: 'Download Icon' }">
+			<Button variant="download" :href="getDownloadUrl(version)" :icon="resolveComponent('UpdateIcon')">
 				{{ t('download') }}
 			</Button>
 		</div>

@@ -7,6 +7,7 @@ import { i18n } from './i18n'
 import { MDXProvider } from '@mdx-js/vue'
 
 // Регистрируем глобальные компоненты для иконок
+import UpdateIcon from '@/assets/images/flat_icons/flat_update.svg'
 import ReloadIcon from '@/assets/images/flat_icons/flat_reload.svg'
 import StartIcon from '@/assets/images/flat_icons/flat_start.svg'
 import PauseIcon from '@/assets/images/flat_icons/flat_pause.svg'
@@ -21,6 +22,7 @@ const app = createApp(App)
 app.use(i18n)
 
 // Регистрация глобальных компонентов для иконок
+app.component('UpdateIcon', UpdateIcon)
 app.component('ReloadIcon', ReloadIcon)
 app.component('StartIcon', StartIcon)
 app.component('PauseIcon', PauseIcon)

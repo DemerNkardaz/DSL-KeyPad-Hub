@@ -38,10 +38,16 @@
 	& > .btn__icon {
 		height: 22px;
 		width: 22px;
-		&>img {
+
+		& > img, & > svg {
 			height: 100%;
 			object-fit: contain;
 			display: block;
+
+			& path, & rect, & circle, & ellipse, & line, & polyline, & polygon {
+				fill: currentColor !important;
+				stroke: currentColor !important;
+			}
 		}
 	}
 
