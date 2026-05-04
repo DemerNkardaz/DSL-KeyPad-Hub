@@ -29,11 +29,11 @@ import StyledText from '@/components/ui/StyledText.vue'
 Следующая функция позволяет подписаться на событие:
 
 ```ts
-Event.OnEvent(eventClass: <string>, eventName: <string>, callback: <Function>)
+Event.OnEvent(eventClass: <string>, eventName: <string>, callback: <function>)
 ```
-<StyledText italic color="#a6e22e">@eventClass</StyledText> — класс события, например, `Application` или `Character Library`<br />
-<StyledText italic color="#a6e22e">@eventName</StyledText> — имя события внутри класса, например, `Initialized` или `Raw Entries Counted`<br />
-<StyledText italic color="#a6e22e">@callback</StyledText> — функция, которая будет вызвана при наступлении события. Она может принимать аргументы, которые зависят от конкретного события.
+<StyledText text="eventClass" preset="var"/> <StyledText text="string" preset="typ"/> — класс события, например, <StyledText text="Application" preset="qstr"/> или <StyledText text="Character Library" preset="qstr"/><br />
+<StyledText text="eventName" preset="var"/> <StyledText text="string" preset="typ"/> — имя события внутри класса, например, <StyledText text="Initialized" preset="qstr"/> или <StyledText text="Raw Entries Counted" preset="qstr"/><br />
+<StyledText text="callback" preset="var"/> <StyledText text="function" preset="typ"/> — функция, которая будет вызвана при наступлении события. Она может принимать аргументы, которые зависят от конкретного события.
 
 <br />
 
@@ -46,12 +46,12 @@ local characters := JSON.LoadFile("path/to/data.json", "UTF-8")
 Event.OnEvent("Character Library", "Raw Entries Counted", () => ChrReg(characters))
 ```
 
-<StyledText italic color="#2eb8e2">@ChrReg</StyledText> — класс, регистрирующий новые символы в библиотеке символов.<br />
+<StyledText text="ChrReg" preset="cls"/> — класс, регистрирующий новые символы в библиотеке символов.<br />
 Принимает 3 аргумента:
 
-<StyledText italic color="#a6e22e">@rawEntries</StyledText> \<<StyledText italic color="#e2ca2e">array</StyledText>\> `[entryName, { entryData } ... ]` массив пар<br />
-<StyledText italic color="#a6e22e">@typeOfInit</StyledText> \<<StyledText italic color="#e2ca2e">string</StyledText>\> `Internal` | `Custom` тип инициализации <br />
-<StyledText italic color="#a6e22e">@preventProgressGUI</StyledText> \<<StyledText italic color="#e2ca2e">bool</StyledText>\> `True` | `False` отключение | включение полосы прогресса
+<StyledText text="rawEntries" preset="var"/> <StyledText text="array" preset="typ"/> `[entryName, { entryData } ... ]` массив пар<br />
+<StyledText text="typeOfInit" preset="var"/> <StyledText text="string" preset="typ"/> `Internal` | `Custom` тип инициализации <br />
+<StyledText text="preventProgressGUI" preset="var"/> <StyledText text="bool" preset="typ"/> `True` | `False` отключение | включение полосы прогресса
 
 <br />
 
@@ -76,11 +76,11 @@ Handle(&registrar, &rawEntries, &nameToID) {
 }
 ```
 
-Событие `"Raw Entries Counted"` класса `"Character Library"` позволяет получить доступ к необработанным данным символов и передаёт следующие ссылки в callback-функцию:
-<StyledText text="&" italic color="#fa8e6e" />
-<StyledText italic color="#a6e22e">@this</StyledText> \<<StyledText italic color="#e2ca2e">class</StyledText>\> `ChrReg { ... }` текущий экземпляр класса-регистратора символов<br />
-<StyledText italic color="#a6e22e">@rawEntries</StyledText> \<<StyledText italic color="#e2ca2e">array</StyledText>\> `[entryName, { entryData } ... ]` массив пар<br />
-<StyledText italic color="#a6e22e">@nameToID</StyledText> \<<StyledText italic color="#e2ca2e">map</StyledText>\> `Map(entryName, index, ... )` карта имён записей символов и их индексов<br />
+Событие <StyledText text="Raw Entries Counted" preset="qstr"/> класса <StyledText text="Character Library" preset="qstr"/> позволяет получить доступ к необработанным данным символов и передаёт следующие ссылки в callback-функцию:
+
+<StyledText text="this" preset="varRef"/> <StyledText text="class" preset="typ"/> `ChrReg { ... }` текущий экземпляр класса-регистратора символов<br />
+<StyledText text="rawEntries" preset="varRef"/> <StyledText text="array" preset="typ"/> `[entryName, { entryData } ... ]` массив пар<br />
+<StyledText text="nameToID" preset="varRef"/> <StyledText text="map" preset="typ"/> `Map(entryName, index, ... )` карта имён записей символов и их индексов<br />
 
 
 </ArticleSection>
