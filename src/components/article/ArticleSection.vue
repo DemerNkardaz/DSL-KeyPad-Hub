@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, onMounted, onUnmounted, computed, useSlots } from 'vue'
+import { inject, onMounted, onUnmounted, computed, useSlots, type ComputedRef, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -10,7 +10,7 @@ const props = defineProps<{ title: string, id?: string, isSubSection?: boolean }
 
 const state = inject<{ activeSection: string | null, sections: { id: string, label: string }[] }>('activeSection')!
 
-const headerId = (props.id || props.title)?.toLocaleLowerCase()
+const headerId = (props.id || props.title)?.toLocaleLowerCase().replace(/\s+/g, '-')
 const sectionId = `${t(`articles.id_${props.isSubSection ? 'subsection' : 'section'}`)}-${headerId}`
 
 const isActive = computed(() => props.isSubSection || state.activeSection === sectionId)
@@ -40,12 +40,50 @@ const groupedNodes = computed(() => {
 	return groups
 })
 
+const pendingSection = inject<ComputedRef<string | null>>('pendingSection', computed(() => null))
+const pendingHeader = inject<ComputedRef<string | null>>('pendingHeader', computed(() => null))
+
+const scrollToPendingHeader = () => {
+	const headerQuery = pendingHeader.value
+	if (!headerQuery) return
+
+	requestAnimationFrame(() => {
+		const sectionEl = document.getElementById(sectionId)
+		if (!sectionEl) return
+
+		const headers = sectionEl.querySelectorAll('h1, h2, h3, h4, h5, h6')
+		const target = Array.from(headers).find(h =>
+			h.id.toLowerCase().includes(headerQuery.toLowerCase()) ||
+			h.textContent?.toLowerCase().includes(headerQuery.toLowerCase())
+		)
+
+		if (target) {
+			target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+		}
+	})
+}
+
 onMounted(() => {
 	if (!props.isSubSection) {
 		state.sections.push({ id: sectionId, label: props.title })
+
 		if (state.sections.length === 1) {
 			state.activeSection = sectionId
 		}
+
+		nextTick(() => {
+			const pending = pendingSection.value
+			if (!pending) return
+
+			const asIndex = parseInt(pending)
+			const target = !isNaN(asIndex)
+				? state.sections[asIndex]
+				: state.sections.find(s => s.id.toLowerCase().includes(pending.toLowerCase()))
+
+			if (target) {
+				state.activeSection = target.id
+			}
+		})
 	}
 })
 
@@ -58,12 +96,13 @@ onUnmounted(() => {
 function onBeforeEnter(el: Element) {
 	(el as HTMLElement).style.height = '0'
 	;(el as HTMLElement).style.overflow = 'hidden'
+	;(el as HTMLElement).style.opacity = '0'
 }
 
 function onEnter(el: Element, done: () => void) {
 	const h = (el as HTMLElement).scrollHeight
 	;(el as HTMLElement).style.transition = 'height 0.3s ease, opacity 0.3s ease'
-	;(el as HTMLElement).style.opacity = '0'
+
 	requestAnimationFrame(() => {
 		;(el as HTMLElement).style.height = h + 'px'
 		;(el as HTMLElement).style.opacity = '1'
@@ -75,10 +114,12 @@ function onAfterEnter(el: Element) {
 	;(el as HTMLElement).style.height = 'auto'
 	;(el as HTMLElement).style.overflow = ''
 	;(el as HTMLElement).style.transition = ''
+
+	scrollToPendingHeader()
 }
 
 function onBeforeLeave(el: Element) {
-	;(el as HTMLElement).style.height = (el as HTMLElement).scrollHeight + 'px'
+	(el as HTMLElement).style.height = (el as HTMLElement).scrollHeight + 'px'
 	;(el as HTMLElement).style.overflow = 'hidden'
 }
 
@@ -100,8 +141,20 @@ function onAfterLeave(el: Element) {
 </script>
 
 <template>
-	<Transition @before-enter="onBeforeEnter" @enter="onEnter" @after-enter="onAfterEnter" @before-leave="onBeforeLeave" @leave="onLeave" @after-leave="onAfterLeave">
-		<section :id="sectionId" class="article-body__section" :class="{ 'article-body__section__sub': isSubSection }" v-show="isActive">
+	<Transition
+		@before-enter="onBeforeEnter"
+		@enter="onEnter"
+		@after-enter="onAfterEnter"
+		@before-leave="onBeforeLeave"
+		@leave="onLeave"
+		@after-leave="onAfterLeave"
+	>
+		<section
+			v-show="isActive"
+			:id="sectionId"
+			class="article-body__section"
+			:class="{ 'article-body__section__sub': isSubSection }"
+		>
 			<h3 v-if="title" :id="headerId">{{ title }}</h3>
 			<hr>
 			<template v-for="(group, i) in groupedNodes" :key="i">
