@@ -5,13 +5,13 @@ import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 import remarkGfm from 'remark-gfm'
 import remarkExtractToc from 'remark-extract-toc'
 import rehypeExternalLinks from 'rehype-external-links'
-import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import mdx from '@mdx-js/rollup'
 import svgLoader from 'vite-svg-loader'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import vue from '@vitejs/plugin-vue'
+import rehypeShiki from '@shikijs/rehype'
 
 import remarkReadingTime from 'remark-reading-time'
 import { remarkReadingTimeExport } from './remarkReadingTimeExport'
@@ -35,7 +35,7 @@ export default defineConfig({
 				rehypeSlug,
 				rehypeAutolinkHeadings,
 				[rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }],
-				rehypePrettyCode,
+				[rehypeShiki, { theme: 'monokai' }],
 			]
 		}), },
 		vue(),

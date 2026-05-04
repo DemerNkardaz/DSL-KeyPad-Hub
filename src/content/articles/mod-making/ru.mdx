@@ -1,0 +1,39 @@
+---
+title: Создание модификаций
+description: Продвинутая кастомизация
+longDescription: Справочник углублённой кастомизации DSL KeyPad через создание модификаций
+image: window_mods
+author: Ялла Нкардаз
+publishedAt: 2026-05-03
+---
+
+import ArticleSection from '@/components/article/ArticleSection.vue'
+import ArticleImage from '@/components/article/ArticleImage.vue'
+import StyledText from '@/components/ui/StyledText.vue'
+
+<ArticleSection title="О модификациях">
+
+</ArticleSection>
+
+<ArticleSection title="Создание модификации">
+
+</ArticleSection>
+
+<ArticleSection title="События">
+
+События реализуют возможность реагировать на определённые действия в программе. Их можно использовать для изменения поведения и наполнения программы. Например, добавление новых символов на стадии их ининциализации, редактирование стандартной библиотеки символов, добавление новых режимов в «Альтернативный ввод» и так далее.
+
+<br />
+
+#### Использование событий
+
+Следующая функция позволяет подписаться на событие:
+
+```ts
+Event.OnEvent(eventClass: <string>, eventName: <string>, callback: <Function>)
+```
+<StyledText italic color="#a6e22e">@eventClass</StyledText> — класс события, например, `Application` или `Character Library`<br />
+<StyledText italic color="#a6e22e">@eventName</StyledText> — имя события внутри класса, например, `Initialized` или `Raw Entries Counted`<br />
+<StyledText italic color="#a6e22e">@callback</StyledText> — функция, которая будет вызвана при наступлении события. Она может принимать аргументы, которые зависят от конкретного события.
+
+</ArticleSection>
