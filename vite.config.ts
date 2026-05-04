@@ -17,6 +17,8 @@ import remarkReadingTime from 'remark-reading-time'
 import { remarkReadingTimeExport } from './remarkReadingTimeExport'
 import { remarkTypography } from './remarkTypography'
 
+import ahk2Grammar from './ahk2.tmLanguage.json'
+
 // https://vite.dev/config/
 export default defineConfig({
 	plugins: [
@@ -35,7 +37,20 @@ export default defineConfig({
 				rehypeSlug,
 				rehypeAutolinkHeadings,
 				[rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }],
-				[rehypeShiki, { theme: 'monokai' }],
+				[rehypeShiki, {
+					theme: 'monokai',
+					langs: [
+						'javascript',
+						'json',
+						'jsonc',
+						'ini',
+						{
+							...ahk2Grammar,
+							name: 'ahk2',
+							alias: ['autohotkey2']
+						}
+					]
+				}],
 			]
 		}), },
 		vue(),
