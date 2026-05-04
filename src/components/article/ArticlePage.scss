@@ -96,6 +96,9 @@
 		padding: 0.25rem;
 		background: $surface-1;
 
+		position: sticky;
+		top: 1rem;
+
 		&__list {
 			display: flex;
 			flex-direction: column;
