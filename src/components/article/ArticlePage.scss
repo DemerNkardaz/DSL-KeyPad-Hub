@@ -203,4 +203,34 @@
 			}
 		}
 	}
+
+	&__section-title, &__heading {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+
+		&__link {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: none;
+			border: none;
+			color: $text-quaternary;
+			cursor: pointer;
+
+			&:hover {
+				color: $text-main;
+			}
+
+			& svg {
+				width: 1em;
+				height: 1em;
+
+				& path {
+					fill: currentColor !important;
+					stroke: currentColor !important;
+				}
+			}
+		}
+	}
 }

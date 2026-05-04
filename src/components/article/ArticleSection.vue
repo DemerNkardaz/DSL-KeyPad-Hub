@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { inject, onMounted, onUnmounted, computed, useSlots, type ComputedRef, nextTick } from 'vue'
+import { locale } from '@/i18n'
+import { articlesMeta } from '@/content/articles'
+import { createArticleUrl } from '@/scripts/utils'
+import { inject, onMounted, onUnmounted, computed, useSlots, type ComputedRef, nextTick, provide } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -9,6 +12,7 @@ defineOptions({ name: 'ArticleSection' })
 const props = defineProps<{ title: string, id?: string, isSubSection?: boolean }>()
 
 const state = inject<{ activeSection: string | null, sections: { id: string, label: string }[] }>('activeSection')!
+const articleState = inject<{ activeArticle: string | null }>('activeArticle')!
 
 const headerId = (props.id || props.title)?.toLocaleLowerCase().replace(/\s+/g, '-')
 const sectionId = `${t(`articles.id_${props.isSubSection ? 'subsection' : 'section'}`)}-${headerId}`
@@ -16,15 +20,12 @@ const sectionId = `${t(`articles.id_${props.isSubSection ? 'subsection' : 'secti
 const isActive = computed(() => props.isSubSection || state.activeSection === sectionId)
 
 const slots = useSlots()
-
 const slotNodes = computed(() => slots.default?.() ?? [])
 
 const groupedNodes = computed(() => {
 	const groups: { isSection: boolean, nodes: any[] }[] = []
-
 	for (const vnode of slotNodes.value) {
 		const isSection = (vnode.type as any)?.name === 'ArticleSection'
-
 		if (isSection) {
 			groups.push({ isSection: true, nodes: [vnode] })
 		} else {
@@ -36,12 +37,38 @@ const groupedNodes = computed(() => {
 			}
 		}
 	}
-
 	return groups
 })
 
 const pendingSection = inject<ComputedRef<string | null>>('pendingSection', computed(() => null))
 const pendingHeader = inject<ComputedRef<string | null>>('pendingHeader', computed(() => null))
+
+if (!props.isSubSection) {
+	provide('parentSectionTitle', computed(() => props.title))
+}
+const parentSectionTitle = inject<ComputedRef<string>>('parentSectionTitle', computed(() => ''))
+
+const articleTitle = computed(() => {
+	const id = articleState.activeArticle
+	if (!id) return ''
+	return articlesMeta[id]?.[locale.value]?.title ?? id
+})
+
+const sectionUrl = computed(() => {
+	if (!articleState.activeArticle) return ''
+	return createArticleUrl(
+		locale.value,
+		articleTitle.value,
+		props.isSubSection ? parentSectionTitle.value : props.title,
+		props.isSubSection ? props.title : undefined
+	)
+})
+
+function onCopyLinkClick(e: MouseEvent) {
+	if (e.button === 1) return
+	e.preventDefault()
+	navigator.clipboard.writeText(sectionUrl.value)
+}
 
 const scrollToPendingHeader = () => {
 	const headerQuery = pendingHeader.value
@@ -102,7 +129,6 @@ function onBeforeEnter(el: Element) {
 function onEnter(el: Element, done: () => void) {
 	const h = (el as HTMLElement).scrollHeight
 	;(el as HTMLElement).style.transition = 'height 0.3s ease, opacity 0.3s ease'
-
 	requestAnimationFrame(() => {
 		;(el as HTMLElement).style.height = h + 'px'
 		;(el as HTMLElement).style.opacity = '1'
@@ -114,7 +140,6 @@ function onAfterEnter(el: Element) {
 	;(el as HTMLElement).style.height = 'auto'
 	;(el as HTMLElement).style.overflow = ''
 	;(el as HTMLElement).style.transition = ''
-
 	scrollToPendingHeader()
 }
 
@@ -155,13 +180,18 @@ function onAfterLeave(el: Element) {
 			class="article-body__section"
 			:class="{ 'article-body__section__sub': isSubSection }"
 		>
-			<h3 v-if="title" :id="headerId">{{ title }}</h3>
+			<div class="article-body__section-title">
+				<h3 class="article-body__section-title__text" v-if="title" :id="headerId">{{ title }}</h3>
+				<a :href="sectionUrl" class="article-body__section-title__link" @click="onCopyLinkClick">
+					<CopyLinkIcon class="article-body__section-title__link__icon" />
+				</a>
+			</div>
 			<hr>
 			<template v-for="(group, i) in groupedNodes" :key="i">
 				<component :is="group.nodes[0]" v-if="group.isSection" />
-				<div v-else>
+				<section class="article-body__section__content" v-else>
 					<component :is="vnode" v-for="(vnode, j) in group.nodes" :key="j" />
-				</div>
+				</section>
 			</template>
 		</section>
 	</Transition>

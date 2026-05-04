@@ -17,6 +17,7 @@ import UnicodeLogo from '@/assets/images/flat_icons/unicode_logo.svg'
 import TimeIcon from '@/assets/images/flat_icons/flat_time.svg'
 import ArrowIcon from '@/assets/images/flat_icons/flat_arrow.svg'
 import CloseIcon from '@/assets/images/flat_icons/flat_close.svg'
+import CopyLinkIcon from '@/assets/images/flat_icons/flat_copy_link.svg'
 // --- END ---
 
 const app = createApp(App)
@@ -34,6 +35,7 @@ app.component('UnicodeLogo', UnicodeLogo)
 app.component('TimeIcon', TimeIcon)
 app.component('ArrowIcon', ArrowIcon)
 app.component('CloseIcon', CloseIcon)
+app.component('CopyLinkIcon', CopyLinkIcon)
 // --- END ---
 
 // Регистрация глобального компонента для MDXProvider
