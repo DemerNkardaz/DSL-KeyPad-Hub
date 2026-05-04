@@ -24,6 +24,7 @@ export default {
 	},
 	articles: {
 		id_section: 'секция',
+		id_subsection: 'подсекция',
 		seconds: 'сек.',
 		minutes: 'мин.',
 		close: 'Закрыть статью',

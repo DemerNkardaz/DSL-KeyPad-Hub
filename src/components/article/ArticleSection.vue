@@ -1,27 +1,58 @@
 <script setup lang="ts">
-import { inject, onMounted, onUnmounted, computed } from 'vue'
+import { inject, onMounted, onUnmounted, computed, useSlots } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 
-const props = defineProps<{ title: string, id?: string }>()
+defineOptions({ name: 'ArticleSection' })
+
+const props = defineProps<{ title: string, id?: string, isSubSection?: boolean }>()
 
 const state = inject<{ activeSection: string | null, sections: { id: string, label: string }[] }>('activeSection')!
 
 const headerId = (props.id || props.title)?.toLocaleLowerCase()
-const sectionId = `${t('articles.id_section')}-${headerId}`
+const sectionId = `${t(`articles.id_${props.isSubSection ? 'subsection' : 'section'}`)}-${headerId}`
 
-const isActive = computed(() => state.activeSection === sectionId)
+const isActive = computed(() => props.isSubSection || state.activeSection === sectionId)
+
+const slots = useSlots()
+
+const slotNodes = computed(() => slots.default?.() ?? [])
+
+const groupedNodes = computed(() => {
+	const groups: { isSection: boolean, nodes: any[] }[] = []
+
+	for (const vnode of slotNodes.value) {
+		const isSection = (vnode.type as any)?.name === 'ArticleSection'
+
+		if (isSection) {
+			groups.push({ isSection: true, nodes: [vnode] })
+		} else {
+			const last = groups[groups.length - 1]
+			if (last && !last.isSection) {
+				last.nodes.push(vnode)
+			} else {
+				groups.push({ isSection: false, nodes: [vnode] })
+			}
+		}
+	}
+
+	return groups
+})
 
 onMounted(() => {
-	state.sections.push({ id: sectionId, label: props.title })
-	if (state.sections.length === 1) {
-		state.activeSection = sectionId
+	if (!props.isSubSection) {
+		state.sections.push({ id: sectionId, label: props.title })
+		if (state.sections.length === 1) {
+			state.activeSection = sectionId
+		}
 	}
 })
 
 onUnmounted(() => {
-	state.sections = state.sections.filter(s => s.id !== sectionId)
+	if (!props.isSubSection) {
+		state.sections = state.sections.filter(s => s.id !== sectionId)
+	}
 })
 
 function onBeforeEnter(el: Element) {
@@ -70,12 +101,15 @@ function onAfterLeave(el: Element) {
 
 <template>
 	<Transition @before-enter="onBeforeEnter" @enter="onEnter" @after-enter="onAfterEnter" @before-leave="onBeforeLeave" @leave="onLeave" @after-leave="onAfterLeave">
-		<section ref="sectionEl" :id="sectionId" class="article-body__section" v-show="isActive">
+		<section :id="sectionId" class="article-body__section" :class="{ 'article-body__section__sub': isSubSection }" v-show="isActive">
 			<h3 v-if="title" :id="headerId">{{ title }}</h3>
 			<hr>
-			<div>
-				<slot />
-			</div>
+			<template v-for="(group, i) in groupedNodes" :key="i">
+				<component :is="group.nodes[0]" v-if="group.isSection" />
+				<div v-else>
+					<component :is="vnode" v-for="(vnode, j) in group.nodes" :key="j" />
+				</div>
+			</template>
 		</section>
 	</Transition>
 </template>

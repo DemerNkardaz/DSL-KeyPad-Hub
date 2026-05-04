@@ -24,6 +24,7 @@ export default {
 	},
 	articles: {
 		id_section: 'section',
+		id_subsection: 'subsection',
 		seconds: 'sec.',
 		minutes: 'min.',
 		close: 'Close article',

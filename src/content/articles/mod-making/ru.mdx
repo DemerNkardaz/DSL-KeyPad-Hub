@@ -1,4 +1,5 @@
 ---
+priority: 2
 title: Создание модификаций
 description: Продвинутая кастомизация
 longDescription: Справочник углублённой кастомизации DSL KeyPad через создание модификаций
@@ -21,11 +22,9 @@ import StyledText from '@/components/ui/StyledText.vue'
 
 <ArticleSection title="События">
 
-События реализуют возможность реагировать на определённые действия в программе. Их можно использовать для изменения поведения и наполнения программы. Например, добавление новых символов на стадии их ининциализации, редактирование стандартной библиотеки символов, добавление новых режимов в «Альтернативный ввод» и так далее.
+События реализуют возможность реагировать на определённые действия в программе. Их можно использовать для изменения поведения и наполнения программы. Например, добавление новых символов на стадии их инициализации, редактирование стандартной библиотеки символов, добавление новых режимов в «Альтернативный ввод» и так далее.
 
-<br />
-
-#### Использование событий
+<ArticleSection is-sub-section title="Использование событий">
 
 Следующая функция позволяет подписаться на событие:
 
@@ -35,5 +34,55 @@ Event.OnEvent(eventClass: <string>, eventName: <string>, callback: <Function>)
 <StyledText italic color="#a6e22e">@eventClass</StyledText> — класс события, например, `Application` или `Character Library`<br />
 <StyledText italic color="#a6e22e">@eventName</StyledText> — имя события внутри класса, например, `Initialized` или `Raw Entries Counted`<br />
 <StyledText italic color="#a6e22e">@callback</StyledText> — функция, которая будет вызвана при наступлении события. Она может принимать аргументы, которые зависят от конкретного события.
+
+<br />
+
+#### Пример использования события
+
+Добавление новых символов в библиотеку символов:
+```rust
+local characters := JSON.LoadFile("path/to/data.json", "UTF-8")
+
+Event.OnEvent("Character Library", "Raw Entries Counted", () => ChrReg(characters))
+```
+
+<StyledText italic color="#2eb8e2">@ChrReg</StyledText> — класс, регистрирующий новые символы в библиотеке символов.<br />
+Принимает 3 аргумента:
+
+<StyledText italic color="#a6e22e">@rawEntries</StyledText> \<<StyledText italic color="#e2ca2e">array</StyledText>\> `[entryName, { entryData } ... ]` массив пар<br />
+<StyledText italic color="#a6e22e">@typeOfInit</StyledText> \<<StyledText italic color="#e2ca2e">string</StyledText>\> `Internal` | `Custom` тип инициализации <br />
+<StyledText italic color="#a6e22e">@preventProgressGUI</StyledText> \<<StyledText italic color="#e2ca2e">bool</StyledText>\> `True` | `False` отключение | включение полосы прогресса
+
+<br />
+
+Модификация существующих символов в библиотеке символов:
+```lua
+local characters := JSON.LoadFile("path/to/data.json", "UTF-8")
+
+Event.OnEvent("Character Library", "Raw Entries Counted", Handle)
+
+Handle(&registrar, &rawEntries, &nameToID) {
+  if charactersModifyData is Array && charactersModifyData.Length >= 2 {
+    Loop charactersModifyData.Length // 2 {
+      local index := A_Index * 2 - 1
+      local entryName := charactersModifyData[index]
+
+      if registrar.IsRawEntryExists(&entryName) {
+        local entry := charactersModifyData[index + 1]
+        registrar.ModifyRawEntry(&entryName, &rawEntries, &entry)
+      }
+    }
+  }
+}
+```
+
+Событие `"Raw Entries Counted"` класса `"Character Library"` позволяет получить доступ к необработанным данным символов и передаёт следующие ссылки в callback-функцию:
+<StyledText text="&" italic color="#fa8e6e" />
+<StyledText italic color="#a6e22e">@this</StyledText> \<<StyledText italic color="#e2ca2e">class</StyledText>\> `ChrReg { ... }` текущий экземпляр класса-регистратора символов<br />
+<StyledText italic color="#a6e22e">@rawEntries</StyledText> \<<StyledText italic color="#e2ca2e">array</StyledText>\> `[entryName, { entryData } ... ]` массив пар<br />
+<StyledText italic color="#a6e22e">@nameToID</StyledText> \<<StyledText italic color="#e2ca2e">map</StyledText>\> `Map(entryName, index, ... )` карта имён записей символов и их индексов<br />
+
+
+</ArticleSection>
 
 </ArticleSection>
