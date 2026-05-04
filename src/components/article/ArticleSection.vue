@@ -127,13 +127,24 @@ function onBeforeEnter(el: Element) {
 }
 
 function onEnter(el: Element, done: () => void) {
-	const h = (el as HTMLElement).scrollHeight
-	;(el as HTMLElement).style.transition = 'height 0.3s ease, opacity 0.3s ease'
+	const html = el as HTMLElement
+
 	requestAnimationFrame(() => {
-		;(el as HTMLElement).style.height = h + 'px'
-		;(el as HTMLElement).style.opacity = '1'
+		requestAnimationFrame(() => {
+			const h = html.scrollHeight
+			html.style.transition = 'height 0.3s ease, opacity 0.3s ease'
+			html.style.height = h + 'px'
+			html.style.opacity = '1'
+		})
 	})
-	setTimeout(done, 300)
+
+	const onEnd = () => {
+		el.removeEventListener('transitionend', onEnd)
+		done()
+	}
+	el.addEventListener('transitionend', onEnd)
+
+	setTimeout(done, 400)
 }
 
 function onAfterEnter(el: Element) {

@@ -14,6 +14,7 @@ const presets = {
 	kwd: { color: '#f92672', italic: false, underline: false, strong: false },
 	str: { color: '#e6db74', italic: false, underline: false, strong: false },
 	qstr: { color: '#e6db74', italic: false, underline: false, strong: false, wrap: ['"', '"'], wrapInside: true },
+	opt: { color: '#009ff7', italic: true, underline: false, strong: false },
 } as const
 
 const props = defineProps<{

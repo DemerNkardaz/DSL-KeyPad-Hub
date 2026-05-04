@@ -51,8 +51,8 @@ Event.OnEvent("Character Library", "Raw Entries Counted", () => ChrReg(character
 Принимает 3 аргумента:
 
 <StyledText text="rawEntries" preset="var"/> <StyledText text="array" preset="typ"/> `[entryName, { entryData } ... ]` массив пар<br />
-<StyledText text="typeOfInit" preset="var"/> <StyledText text="string" preset="typ"/> `Internal` | `Custom` тип инициализации <br />
-<StyledText text="preventProgressGUI" preset="var"/> <StyledText text="bool" preset="typ"/> `True` | `False` отключение | включение полосы прогресса
+<StyledText text="typeOfInit" preset="var"/><StyledText text="?" preset="opt"/> <StyledText text="string" preset="typ"/> `Internal` | `Custom` тип инициализации <br />
+<StyledText text="preventProgressGUI" preset="var"/><StyledText text="?" preset="opt"/> <StyledText text="bool" preset="typ"/> `True` | `False` отключение | включение полосы прогресса
 
 <br />
 
@@ -62,15 +62,21 @@ local characters := JSON.LoadFile("path/to/data.json", "UTF-8")
 
 Event.OnEvent("Character Library", "Raw Entries Counted", Handle)
 
-Handle(&registrar, &rawEntries, &nameToID) {
-  if charactersModifyData is Array && charactersModifyData.Length >= 2 {
-    Loop charactersModifyData.Length // 2 {
+; Handle(&Registrar, &rawEntries, &nameToID)
+Handle(&Registrar, &rawEntries) {
+  if characters is Array && characters.Length >= 2 {
+    ; Цикл по парам значений
+    Loop characters.Length // 2 {
       local index := A_Index * 2 - 1
-      local entryName := charactersModifyData[index]
+      ; Объявление имени мутирующей записи
+      local entryName := characters[index]
 
-      if registrar.IsRawEntryExists(&entryName) {
-        local entry := charactersModifyData[index + 1]
-        registrar.ModifyRawEntry(&entryName, &rawEntries, &entry)
+      ; Проверка существования имени записи
+      if Registrar.IsRawEntryExists(&entryName) {
+        ; Объявление объекта мутирующей записи
+        local entry := characters[index + 1]
+        ; Слияние исходной записи с мутирующей записью
+        Registrar.ModifyRawEntry(&entryName, &rawEntries, &entry)
       }
     }
   }
@@ -82,6 +88,15 @@ Handle(&registrar, &rawEntries, &nameToID) {
 <StyledText text="this" preset="varRef"/> <StyledText text="class" preset="typ"/> `ChrReg { ... }` текущий экземпляр класса-регистратора символов<br />
 <StyledText text="rawEntries" preset="varRef"/> <StyledText text="array" preset="typ"/> `[entryName, { entryData } ... ]` массив пар<br />
 <StyledText text="nameToID" preset="varRef"/> <StyledText text="map" preset="typ"/> `Map(entryName, index, ... )` карта имён записей символов и их индексов<br />
+
+<br/>
+
+Через `Loop characters.Length // 2` проходимся по парам значений в массиве, получаем индекс и используем для получения имени записи и объекта мутирующей записи.
+
+<br/>
+
+<StyledText text="IsRawEntryExists" preset="fnc"/>(<StyledText text="entryName" preset="varRef"/> <StyledText text="string" preset="typ"/>) — метод класса <StyledText text="ChrReg" preset="cls"/>, проверяющий существование записи с указанным именем в необработанных данных.<br/>
+<StyledText text="ModifyRawEntry" preset="fnc"/>(<StyledText text="entryName" preset="varRef"/> <StyledText text="string" preset="typ"/>, <StyledText text="rawEntries" preset="varRef"/> <StyledText text="array" preset="typ"/>, <StyledText text="entry" preset="varRef"/> <StyledText text="object" preset="typ"/>) — метод класса <StyledText text="ChrReg" preset="cls"/>, принимающий ссылку на имя записи в необработанных данных, ссылку на необработанные данные и ссылку на объект мутирующей записи, который модифицирует объект записи с указанным именем.
 
 
 </ArticleSection>
