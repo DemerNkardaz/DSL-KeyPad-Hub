@@ -3,7 +3,9 @@ import { inject, computed, useSlots, type ComputedRef } from 'vue'
 import { locale } from '@/i18n'
 import { articlesMeta } from '@/content/articles'
 import { createArticleUrl } from '@/scripts/utils'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const props = defineProps<{
 	level?: 1 | 2 | 3 | 4 | 5 | 6
 	text?: string
@@ -54,7 +56,7 @@ function onCopyLinkClick(e: MouseEvent) {
 			<template v-if="text">{{ text }}</template>
 			<slot v-else />
 		</component>
-		<a :href="headingUrl" class="article-body__heading__link" @click="onCopyLinkClick">
+		<a :href="headingUrl" class="article-body__heading__link" @click="onCopyLinkClick" :title="t('copy_link')">
 			<CopyLinkIcon class="article-body__heading__link__icon" />
 		</a>
 	</div>

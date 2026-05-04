@@ -193,7 +193,7 @@ function onAfterLeave(el: Element) {
 		>
 			<div class="article-body__section-title">
 				<h3 class="article-body__section-title__text" v-if="title" :id="headerId">{{ title }}</h3>
-				<a :href="sectionUrl" class="article-body__section-title__link" @click="onCopyLinkClick">
+				<a :href="sectionUrl" class="article-body__section-title__link" @click="onCopyLinkClick" :title="t('copy_link')">
 					<CopyLinkIcon class="article-body__section-title__link__icon" />
 				</a>
 			</div>

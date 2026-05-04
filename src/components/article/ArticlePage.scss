@@ -217,10 +217,13 @@
 			border: none;
 			color: $text-quaternary;
 			cursor: pointer;
+			text-decoration: none;
+			transition: all 150ms ease;
 
 			&:hover {
 				color: $text-main;
 			}
+
 
 			& svg {
 				width: 1em;
@@ -231,6 +234,17 @@
 					stroke: currentColor !important;
 				}
 			}
+
+			&:hover svg {
+				width: 1.1em;
+				height: 1.1em;
+			}
+
+			&:active svg {
+				width: 0.95em;
+				height: 0.95em;
+			}
+
 		}
 	}
 }
