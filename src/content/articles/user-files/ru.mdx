@@ -3,7 +3,7 @@ priority: 1
 title: Пользовательские файлы
 description: Кастомизация
 longDescription: Добавление своих рецептов, раскладкок и наборов привязок
-image: window_recipes
+image: binds_sample
 author: Ялла Нкардаз
 publishedAt: 2026-05-03
 ---
@@ -20,6 +20,29 @@ import ArticleImage from '@/components/article/ArticleImage.vue'
 </ArticleSection>
 
 <ArticleSection title="Наборы привязок">
+
+```jsonc
+{
+  "info": {
+    // Имя набора привязок
+    "name": "Сегодня на астрологическом"
+  },
+  // Перечень ключ-текст
+  "binds": {
+    "A": ["astrological_n_sym_planet_venus"],
+    "2:LangFlat": ["digit_2::superscript×20", "digit_1::superscript×10"],
+    "<^>!A": "alchemical_brimstone_black",
+    "<^>!B": ["astrological_proserpina"],
+    "<^>!E": ["#1948"],
+    ">+A:Caps": ["astrological_neptune", "astrological_uranus"],
+    "<^>!И": ["astrological_chiron"],
+    "<^>!Y": [
+      "@ඞʂ🍋",
+      "@Сижу за решёткой в темнице сырой.\nВскормленный в неволе орёл молодой,\nМой грустный товарищ, махая крылом,\nКровавую пищу клюёт под окном,\n\nКлюёт, и бросает, и смотрит в окно,\nКак будто со мною задумал одно.\nЗовёт меня взглядом и криком своим\nИ вымолвить хочет: «Давай, улетим!\n\nМы вольные птицы; пора, брат, пора!\nТуда, где за тучей белеет гора,\nТуда, где синеют морские края,\nТуда, где гуляем лишь ветер… да я!…»"
+    ]
+  }
+}
+```
 
 </ArticleSection>
 

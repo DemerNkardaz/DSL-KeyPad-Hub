@@ -39,7 +39,7 @@ defineEmits<{
 		<div class="article-list" ref="listEl" @touchstart="onTouchStart" @touchend="onTouchEnd">
 			<div class="article-list__item" v-for="article in articlesRegistry" :key="article" @click="state.activeArticle = article" :class="{ 'article-list__item--active': state.activeArticle === article }">
 				<div class="article-list__item-image-container">
-					<img v-if="articlesMeta[article]?.[locale]?.image" :src="resolveImage(articlesMeta[article]?.[locale]?.image, locale)" :alt="articlesMeta[article]?.[locale]?.title || article" class="article-list__item-image" />
+					<img v-if="articlesMeta[article]?.[locale]?.image" :src="resolveImage(articlesMeta[article]?.[locale]?.image, articlesMeta[article]?.[locale]?.imageOrigin ?? locale)" :alt="articlesMeta[article]?.[locale]?.title || article" class="article-list__item-image" />
 					<div v-else class="article-list__item-placeholder" :class="articlesMeta[article]?.[locale]?.class"><slot name="placeholder" /></div>
 				</div>
 				<div class="article-list__item-content">
