@@ -8,10 +8,10 @@ const presets = {
 		color: '#b3b3b3', italic: true, underline: false, strong: false,
 		wrap: ['&', ''], wrapColor: '#fa8e6e', wrapItalic: true, wrapUnderline: false, wrapStrong: false
 	},
-	cls: { color: '#27ff9f', italic: true, underline: false, strong: false },
-	typ: { color: '#e2ca2e', italic: true, underline: false, strong: false, wrap: ["<", ">"] },
+	cls: { color: '#27FF9F', italic: true, underline: false, strong: false },
+	typ: { color: '#E1D833', italic: true, underline: false, strong: false, wrap: ["<", ">"], wrapColor: '#fa8e6e' },
 	fnc: { color: '#66d9ef', italic: true, underline: false, strong: false },
-	kwd: { color: '#f92672', italic: false, underline: false, strong: false },
+	kwd: { color: '#E1D833', italic: false, underline: false, strong: false },
 	str: { color: '#e6db74', italic: false, underline: false, strong: false },
 	qstr: { color: '#e6db74', italic: false, underline: false, strong: false, wrap: ['"', '"'], wrapInside: true },
 	opt: { color: '#009ff7', italic: true, underline: false, strong: false },

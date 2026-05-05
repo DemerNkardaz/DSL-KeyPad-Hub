@@ -177,7 +177,7 @@
 		}
 
 		& pre {
-			border: 1px solid $surface-0;
+			border: 1px solid $surface-2;
 			padding: 0.5rem;
 			margin-block: 0.75rem;
 			border-radius: 5px;
@@ -250,4 +250,71 @@
 
 		}
 	}
+
+	& span.shiki {
+		background-color: unset !important;
+	}
+
 }
+
+pre.shiki {
+	counter-reset: line;
+	position: relative;
+	padding-left: 2.35em;
+}
+
+pre.shiki code>span {
+	position: relative;
+}
+
+pre.shiki code>span::before {
+	content: counter(line);
+	counter-increment: line;
+
+	position: absolute;
+	left: -3.5em;
+	width: 3em;
+
+	text-align: right;
+	opacity: 0.5;
+
+	line-height: inherit;
+}
+
+pre.shiki .tab,
+pre.shiki .space {
+	position: relative;
+}
+
+pre.shiki .tab::before {
+	content: '⇥';
+	position: absolute;
+	opacity: 0.3;
+}
+
+pre.shiki .space::before {
+	content: '·';
+	position: absolute;
+	opacity: 0.3;
+}
+
+pre.shiki .indent {
+  display: inline-block;
+  position: relative;
+  left: var(--indent-offset);
+}
+
+pre.shiki .indent:empty {
+  height: 1lh;
+  vertical-align: bottom;
+}
+
+pre.shiki .indent::before {
+  content: '';
+  position: absolute;
+  opacity: 0.15;
+  width: 1px;
+  height: 100%;
+  background-color: currentColor;
+}
+

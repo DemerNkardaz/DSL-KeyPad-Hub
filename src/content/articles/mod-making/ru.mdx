@@ -50,9 +50,9 @@ Event.OnEvent("Character Library", "Raw Entries Counted", () => ChrReg(character
 <StyledText text="ChrReg" preset="cls"/> — класс, регистрирующий новые символы в библиотеке символов.<br />
 Принимает 3 аргумента:
 
-<StyledText text="rawEntries" preset="var"/> <StyledText text="array" preset="typ"/> `[entryName, { entryData } ... ]` массив пар<br />
-<StyledText text="typeOfInit" preset="var"/><StyledText text="?" preset="opt"/> <StyledText text="string" preset="typ"/> `Internal` | `Custom` тип инициализации <br />
-<StyledText text="preventProgressGUI" preset="var"/><StyledText text="?" preset="opt"/> <StyledText text="bool" preset="typ"/> `True` | `False` отключение | включение полосы прогресса
+<StyledText text="rawEntries" preset="var"/> <StyledText text="array" preset="typ"/> `[entryName <String>, entryData <Object{}> ... ]{:ahk2}` массив пар<br />
+<StyledText text="typeOfInit" preset="var"/><StyledText text="?" preset="opt"/> <StyledText text="string" preset="typ"/> `"Internal"{:ahk2}` | `"Custom"{:ahk2}` тип инициализации <br />
+<StyledText text="preventProgressGUI" preset="var"/><StyledText text="?" preset="opt"/> <StyledText text="bool" preset="typ"/> `True{:ahk2}` | `False{:ahk2}` отключение | включение полосы прогресса
 
 <br />
 
@@ -85,13 +85,13 @@ Handle(&Registrar, &rawEntries) {
 
 Событие <StyledText text="Raw Entries Counted" preset="qstr"/> класса <StyledText text="Character Library" preset="qstr"/> позволяет получить доступ к необработанным данным символов и передаёт следующие ссылки в callback-функцию:
 
-<StyledText text="this" preset="varRef"/> <StyledText text="class" preset="typ"/> `ChrReg { ... }` текущий экземпляр класса-регистратора символов<br />
-<StyledText text="rawEntries" preset="varRef"/> <StyledText text="array" preset="typ"/> `[entryName, { entryData } ... ]` массив пар<br />
-<StyledText text="nameToID" preset="varRef"/> <StyledText text="map" preset="typ"/> `Map(entryName, index, ... )` карта имён записей символов и их индексов<br />
+<StyledText text="this" preset="varRef"/> <StyledText text="class" preset="typ"/> `ChrReg { ... }{:ahk2}` текущий экземпляр класса-регистратора символов<br />
+<StyledText text="rawEntries" preset="varRef"/> <StyledText text="array" preset="typ"/> `[entryName <String>, entryData <Object{}> ... ]{:ahk2}` массив пар<br />
+<StyledText text="nameToID" preset="varRef"/> <StyledText text="map" preset="typ"/> `Map(entryName <String>, index <Number>, ... ){:ahk2}` карта имён записей символов и их индексов<br />
 
 <br/>
 
-Через `Loop characters.Length // 2` проходимся по парам значений в массиве, получаем индекс и используем для получения имени записи и объекта мутирующей записи.
+Через `Loop characters.Length // 2{:ahk2}` проходимся по парам значений в массиве, получаем индекс и используем для получения имени записи и объекта мутирующей записи.
 
 <br/>
 

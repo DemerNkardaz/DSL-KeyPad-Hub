@@ -16,8 +16,11 @@ import rehypeShiki from '@shikijs/rehype'
 import remarkReadingTime from 'remark-reading-time'
 import { remarkReadingTimeExport } from './remarkReadingTimeExport'
 import { remarkTypography } from './remarkTypography'
+import { transformerRenderIndentGuides } from '@shikijs/transformers'
 
 import ahk2Grammar from './ahk2.tmLanguage.json'
+
+import theme from './DSL-KeyPad.json'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -38,7 +41,10 @@ export default defineConfig({
 				rehypeAutolinkHeadings,
 				[rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }],
 				[rehypeShiki, {
-					theme: 'monokai',
+					theme: theme,
+					transformers: [
+						transformerRenderIndentGuides(),
+					],
 					langs: [
 						'javascript',
 						'json',
@@ -49,7 +55,8 @@ export default defineConfig({
 							name: 'ahk2',
 							alias: ['autohotkey2']
 						}
-					]
+					],
+					inline: 'tailing-curly-colon',
 				}],
 			]
 		}), },
